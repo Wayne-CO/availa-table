@@ -41,3 +41,9 @@ next-env.d.ts
 
 # VSCode
 settings.json
+
+# Chromatic
+build-storybook.log
+chromatic.log
+chromatic-build-*.xml
+chromatic-diagnostics.json

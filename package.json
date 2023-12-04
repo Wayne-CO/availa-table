@@ -10,7 +10,8 @@
     "prepare": "husky install",
     "type-check": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_514c0b4124b0256"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -36,6 +37,7 @@
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
+    "chromatic": "^10.0.0",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
     "eslint-config-prettier": "^9.0.0",
@@ -46,5 +48,7 @@
     "storybook": "^7.6.3",
     "tsc-files": "^1.1.4",
     "typescript": "^5"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "availa-table@0.1.0"
 }
