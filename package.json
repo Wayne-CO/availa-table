@@ -15,7 +15,8 @@
     "postinstall": "prisma generate"
   },
   "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
+    "seed-preview": "ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
