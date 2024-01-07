@@ -15,10 +15,10 @@ jobs:
       - name: Apply all pending migrations to the database
         run: npx prisma migrate deploy
         env:
-          POSTGRES_PRISMA_URL: ${{ secrets.POSTGRES_PRISMA_URL_PREVIEW }}
+          POSTGRES_PRISMA_URL: ${{ secrets.POSTGRES_PRISMA_URL }}
           POSTGRES_URL_NON_POOLING: ${{ secrets.POSTGRES_URL_NON_POOLING_PREVIEW  }}
       - name: Apply seed
         run: npx prisma db seed
         env:
-          POSTGRES_PRISMA_URL: ${{ secrets.POSTGRES_PRISMA_URL_PREVIEW }}
+          POSTGRES_PRISMA_URL: ${{ secrets.POSTGRES_PRISMA_URL }}
           POSTGRES_URL_NON_POOLING: ${{ secrets.POSTGRES_URL_NON_POOLING_PREVIEW  }}
