@@ -23,3 +23,5 @@ jobs:
         env:
           POSTGRES_PRISMA_URL: ${{ secrets.POSTGRES_PRISMA_URL }}
           POSTGRES_URL_NON_POOLING: ${{ secrets.POSTGRES_URL_NON_POOLING_PREVIEW  }}
+      - name: Builds app
+        run: npm run build
