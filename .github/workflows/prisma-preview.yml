@@ -4,7 +4,7 @@ on: push
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: 
+    environment:
       name: Preview
     steps:
       - name: Checkout repo
@@ -23,5 +23,7 @@ jobs:
         env:
           POSTGRES_PRISMA_URL: ${{ secrets.POSTGRES_PRISMA_URL }}
           POSTGRES_URL_NON_POOLING: ${{ secrets.POSTGRES_URL_NON_POOLING_PREVIEW  }}
+      - name: runs prisma generate
+        run: npm run build
       - name: Builds app
         run: npm run build
