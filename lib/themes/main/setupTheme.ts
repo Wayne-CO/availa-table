@@ -15,7 +15,7 @@ const setupTheme = createTheme({
   },
   typography: {
     fontSize: 16,
-    fontFamily: `"${roboto.style.fontFamily}, Arial, sans-serif"`,
+    fontFamily: roboto.style.fontFamily,
   },
 });
 
