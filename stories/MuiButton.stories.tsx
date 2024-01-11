@@ -14,5 +14,14 @@ export const Primary = {
   args: {
     label: "hi",
     variant: "contained",
+    size: "large",
+  },
+};
+
+export const Secondary = {
+  args: {
+    label: "secondary button",
+    variant: "text",
+    size: "small",
   },
 };
