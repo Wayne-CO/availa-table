@@ -11,8 +11,12 @@ const meta: Meta<typeof RestaurantCard> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const FirstStory: Story = {
+export const Default: Story = {
   args: {
-    //👇 The args you need here will depend on your component
+    name: "Pizza Hut",
+    location: {
+      name: "Toronto",
+    },
+    cuisine: { name: "Canadian" },
   },
 };

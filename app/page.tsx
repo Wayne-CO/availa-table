@@ -1,9 +1,10 @@
 import Button from "@mui/material/Button";
-// import { Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { prisma } from "lib/prisma";
 
-// Todo: use in restaurant card prop type
-// type restaurantCard = Prisma.PromiseReturnType<typeof fetchRestaurants>
+type RestaurantsCardData = Prisma.PromiseReturnType<typeof fetchRestaurants>;
+
+export type RestaurantCardData = RestaurantsCardData[0];
 
 const fetchRestaurants = async () => {
   const restaurants = await prisma.restaurant.findMany({
@@ -11,9 +12,17 @@ const fetchRestaurants = async () => {
       id: true,
       name: true,
       mainImage: true,
-      cuisine: true,
-      location: true,
       price: true,
+      cuisine: {
+        select: {
+          name: true,
+        },
+      },
+      location: {
+        select: {
+          name: true,
+        },
+      },
     },
   });
 
