@@ -20,7 +20,7 @@ export const Primary = {
 
 export const Secondary = {
   args: {
-    label: "changed label",
+    label: "second",
     variant: "text",
     size: "small",
   },
