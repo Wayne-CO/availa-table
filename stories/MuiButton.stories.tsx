@@ -14,13 +14,13 @@ export const Primary = {
   args: {
     label: "hi",
     variant: "contained",
-    size: "large",
+    size: "medium",
   },
 };
 
 export const Secondary = {
   args: {
-    label: "secondary button",
+    label: "changed label",
     variant: "text",
     size: "small",
   },
