@@ -8,7 +8,28 @@ const roboto = Roboto({
   display: "swap",
 });
 
+declare module "@mui/material/styles" {
+  interface Palette {
+    green: Palette["primary"];
+  }
+
+  interface PaletteOptions {
+    green?: PaletteOptions["primary"];
+  }
+}
+
+declare module "@mui/material/SvgIcon" {
+  interface SvgIconPropsColorOverrides {
+    green: true;
+  }
+}
+
 const setupTheme = createTheme({
+  palette: {
+    green: {
+      main: "#00B712",
+    },
+  },
   typography: {
     fontSize: 16,
     fontFamily: roboto.style.fontFamily,
