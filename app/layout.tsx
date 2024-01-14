@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import theme from "@/lib/themes/main";
+import theme from "@/lib/mui/themes/main";
 
 export const metadata: Metadata = {
   title: "Create Next App",

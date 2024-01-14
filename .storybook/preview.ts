@@ -4,7 +4,7 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { withThemeFromJSXProvider } from "@storybook/addon-themes";
 
 /* TODO: update import for your custom Material UI themes */
-import theme from "../lib/themes/main";
+import theme from "../lib/mui/themes/main";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
