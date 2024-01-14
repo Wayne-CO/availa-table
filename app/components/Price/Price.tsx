@@ -22,7 +22,7 @@ export default function Price(props: Props) {
     <MonetizationOnSharp color="green" {...sharedProps} {...rest} />
   );
   const inactivePrice = (
-    <MonetizationOnSharp color="grey" {...sharedProps} {...rest} />
+    <MonetizationOnSharp color="neutral" {...sharedProps} {...rest} />
   );
 
   const renderPrice = () => {
