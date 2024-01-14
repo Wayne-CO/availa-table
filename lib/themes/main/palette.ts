@@ -14,8 +14,10 @@ declare module "@mui/material/SvgIcon" {
   }
 }
 
-export const palette = {
+const palette = {
   green: {
     main: "#00B712",
   },
 };
+
+export default palette;
