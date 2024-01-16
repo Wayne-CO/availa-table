@@ -9,6 +9,7 @@
     "lint": "next lint",
     "prepare": "husky install",
     "type-check": "tsc --noEmit",
+    "watch:build": "tsc --watch",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "npx chromatic --project-token=chpt_514c0b4124b0256",

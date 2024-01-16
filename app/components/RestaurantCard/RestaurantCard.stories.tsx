@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import RestaurantCard from "./RestaurantCard";
 
-//👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof RestaurantCard> = {
   title: "Home/RestaurantCard",
   component: RestaurantCard,
@@ -18,5 +17,8 @@ export const Default: Story = {
       name: "Toronto",
     },
     cuisine: { name: "Canadian" },
+    price: "CHEAP",
+    mainImage:
+      "https://resizer.otstatic.com/v2/photos/wide-huge/2/31852905.jpg",
   },
 };

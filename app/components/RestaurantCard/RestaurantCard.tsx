@@ -2,44 +2,55 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { Box, useTheme } from "@mui/material";
 import { RestaurantCardData } from "@/app/page";
-import { Box } from "@mui/material";
+import Price from "../Price/Price";
 
 export default function RestaurantCard({
   name,
   location,
-  cuisine, // mainImage,
-} // price,
-: RestaurantCardData) {
+  cuisine,
+  mainImage,
+  price,
+}: RestaurantCardData) {
+  const theme = useTheme();
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image="/static/images/cards/contemplative-reptile.jpg"
-        title="green iguana"
-      />
+    <Card sx={{ maxWidth: 368 }}>
+      <CardMedia sx={{ height: "200px" }} image={mainImage} />
       <CardContent>
-        <Typography gutterBottom variant="h3" component="div">
+        <Typography
+          gutterBottom
+          variant="h3"
+          fontSize={theme.typography.pxToRem(24)}
+        >
           {name}
         </Typography>
-        <Typography>
+
+        <Typography fontSize={theme.typography.pxToRem(14)} mb="8px">
           {location.name} • {cuisine.name}
         </Typography>
-        <Box>
-          <Box>*****</Box>
+
+        <Box display="flex" alignItems="center">
+          <Box pr="5px">*****</Box>
           <Box>
-            <Typography>1234 Reviews</Typography>
+            <Typography color="text.secondary">1234 Reviews</Typography>
           </Box>
         </Box>
 
-        <Box>
-          <Box>$$$$$</Box>
+        <Box mb="8px">
           <Box>
-            <Typography>$100-200 per guest</Typography>
+            <Price price={price} />
           </Box>
         </Box>
 
-        <Typography>Guests who booked today: 100</Typography>
+        <Typography
+          color="text.primary"
+          fontSize={theme.typography.pxToRem(20)}
+          fontWeight="500"
+        >
+          Guests who booked today: 100
+        </Typography>
       </CardContent>
     </Card>
   );
