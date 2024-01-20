@@ -1,13 +1,13 @@
 import { PRICE } from "@prisma/client";
-import MonetizationOnSharp from "@mui/icons-material/MonetizationOnSharp";
-import { Box, SvgIconProps } from "@mui/material";
+import { Box, SvgIconProps, Typography, useTheme } from "@mui/material";
 
 type Props = {
   price: PRICE;
 } & Pick<SvgIconProps, "sx">;
 
 export default function Price(props: Props) {
-  const { price, ...rest } = props;
+  const theme = useTheme();
+  const { price } = props;
 
   const priceTiers = {
     CHEAP: 2,
@@ -15,23 +15,15 @@ export default function Price(props: Props) {
     EXPENSIVE: 4,
   };
 
-  const sharedProps = {
-    sx: { fontSize: 18 },
-  };
-  const activePrice = (
-    <MonetizationOnSharp color="green" {...sharedProps} {...rest} />
-  );
-  const inactivePrice = (
-    <MonetizationOnSharp color="neutral" {...sharedProps} {...rest} />
-  );
-
   const renderPrice = () => {
     const total = [];
     for (let index = 0; index < 5; index++) {
       if (index < priceTiers[price]) {
-        total.push(activePrice);
-      } else {
-        total.push(inactivePrice);
+        total.push(
+          <Typography component="span" fontSize={theme.typography.pxToRem(14)}>
+            $
+          </Typography>,
+        );
       }
     }
 
