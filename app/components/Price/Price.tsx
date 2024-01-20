@@ -20,7 +20,11 @@ export default function Price(props: Props) {
     for (let index = 0; index < 5; index++) {
       if (index < priceTiers[price]) {
         total.push(
-          <Typography component="span" fontSize={theme.typography.pxToRem(14)}>
+          <Typography
+            component="span"
+            color="text.secondary"
+            fontSize={theme.typography.pxToRem(14)}
+          >
             $
           </Typography>,
         );
