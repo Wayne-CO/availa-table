@@ -16,38 +16,53 @@ export default function RestaurantCard({
   const theme = useTheme();
 
   return (
-    <Card sx={{ maxWidth: 368 }}>
-      <CardMedia sx={{ height: "200px" }} image={mainImage} />
-      <CardContent>
+    <Card sx={{ maxWidth: 296 }}>
+      <CardMedia sx={{ height: "127px" }} image={mainImage} />
+      <CardContent
+        sx={{
+          height: "130px",
+          pb: "16px",
+        }}
+      >
         <Typography
           gutterBottom
           variant="h3"
           fontSize={theme.typography.pxToRem(24)}
+          textTransform="capitalize"
+          textOverflow="ellipsis"
+          overflow="hidden"
+          whiteSpace="nowrap"
+          mb="2px"
         >
           {name}
         </Typography>
 
-        <Typography fontSize={theme.typography.pxToRem(14)} mb="8px">
+        <Typography
+          fontSize={theme.typography.pxToRem(14)}
+          mb="2px"
+          color="text.secondary"
+        >
           {location.name} • {cuisine.name}
         </Typography>
 
-        <Box display="flex" alignItems="center">
+        <Box display="flex" alignItems="center" pb="2px">
+          <Box>
+            <Typography pr="5px">5</Typography>
+          </Box>
           <Box pr="5px">*****</Box>
           <Box>
-            <Typography color="text.secondary">1234 Reviews</Typography>
+            <Typography color="text.secondary" pr="3px">
+              (1,234) •
+            </Typography>
           </Box>
-        </Box>
-
-        <Box mb="8px">
           <Box>
             <Price price={price} />
           </Box>
         </Box>
 
         <Typography
-          color="text.primary"
-          fontSize={theme.typography.pxToRem(20)}
-          fontWeight="500"
+          color="text.secondary"
+          fontSize={theme.typography.pxToRem(14)}
         >
           Guests who booked today: 100
         </Typography>
