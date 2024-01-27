@@ -20,7 +20,7 @@ export default function RestaurantCard({
       <CardMedia sx={{ height: "127px" }} image={mainImage} />
       <CardContent
         sx={{
-          height: "130px",
+          minHeight: "130px",
           pb: "16px",
         }}
       >
