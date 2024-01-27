@@ -41,6 +41,9 @@ export default function RestaurantCard({
           fontSize={theme.typography.pxToRem(14)}
           mb="2px"
           color="text.secondary"
+          textOverflow="ellipsis"
+          overflow="hidden"
+          whiteSpace="nowrap"
         >
           {location.name} • {cuisine.name}
         </Typography>
