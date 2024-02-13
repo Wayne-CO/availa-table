@@ -1,8 +1,10 @@
+import { Box, useTheme } from "@mui/material";
 import Card from "@mui/material/Card";
+
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Box, useTheme } from "@mui/material";
+
 import { RestaurantCardData } from "@/app/page";
 import Price from "../Price/Price";
 

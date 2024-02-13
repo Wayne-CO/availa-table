@@ -1,6 +1,6 @@
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import type { Metadata } from "next";
 import "./globals.css";
-import { CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "@/lib/mui/themes/main";
 
 export const metadata: Metadata = {

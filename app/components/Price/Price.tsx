@@ -1,5 +1,5 @@
-import { PRICE } from "@prisma/client";
 import { Box, SvgIconProps, Typography, useTheme } from "@mui/material";
+import { PRICE } from "@prisma/client";
 
 type Props = {
   price: PRICE;
