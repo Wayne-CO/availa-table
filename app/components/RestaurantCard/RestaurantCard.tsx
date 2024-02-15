@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, useTheme } from "@mui/material";
 import Card from "@mui/material/Card";
 
@@ -8,14 +10,13 @@ import Typography from "@mui/material/Typography";
 import { RestaurantCardData } from "@/app/page";
 import Price from "../Price/Price";
 
-export default function RestaurantCard({
-  name,
-  location,
-  cuisine,
-  mainImage,
-  price,
-}: RestaurantCardData) {
+type Props = {
+  restaurant: RestaurantCardData;
+};
+
+export default function RestaurantCard({ restaurant }: Props) {
   const theme = useTheme();
+  const { mainImage, name, cuisine, location, price } = restaurant;
 
   return (
     <Card sx={{ maxWidth: 296 }}>
