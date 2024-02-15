@@ -21,6 +21,7 @@ export default function Price(props: Props) {
       if (index < priceTiers[price]) {
         total.push(
           <Typography
+            key={index}
             component="span"
             color="text.secondary"
             fontSize={theme.typography.pxToRem(14)}
