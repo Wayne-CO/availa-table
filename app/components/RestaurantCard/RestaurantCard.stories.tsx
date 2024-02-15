@@ -12,13 +12,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    name: "Pizza Hut",
-    location: {
-      name: "Toronto",
+    restaurant: {
+      id: 1,
+      slug: "pizza-hut-ottawa",
+      name: "Pizza Hut",
+      location: {
+        name: "Toronto",
+      },
+      cuisine: { name: "Canadian" },
+      price: "CHEAP",
+      mainImage:
+        "https://resizer.otstatic.com/v2/photos/wide-huge/2/31852905.jpg",
     },
-    cuisine: { name: "Canadian" },
-    price: "CHEAP",
-    mainImage:
-      "https://resizer.otstatic.com/v2/photos/wide-huge/2/31852905.jpg",
   },
 };
