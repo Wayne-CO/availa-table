@@ -19,8 +19,8 @@ export default function RestaurantCard({ restaurant }: Props) {
   const { mainImage, name, cuisine, location, price } = restaurant;
 
   return (
-    <Card sx={{ maxWidth: 296 }}>
-      <CardMedia sx={{ height: "127px" }} image={mainImage} />
+    <Card sx={{ width: 296 }}>
+      <CardMedia sx={{ height: "180px" }} image={mainImage} />
       <CardContent
         sx={{
           minHeight: "130px",

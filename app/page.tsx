@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Prisma } from "@prisma/client";
 import { prisma } from "lib/prisma";
@@ -36,8 +36,11 @@ export default async function Home() {
   const restaurants = await fetchRestaurants();
 
   return (
-    <main>
-      <Typography variant="h1">EXPLORE YOUR OPTIONS</Typography>
+    <Box component="main" width="1272px" margin="auto" px="20px">
+      <Typography variant="h4" mb="54px">
+        EXPLORE YOUR OPTIONS
+      </Typography>
+
       <Grid container spacing={2}>
         {restaurants.map((restaurant) => (
           <Grid key={restaurant.id}>
@@ -45,6 +48,6 @@ export default async function Home() {
           </Grid>
         ))}
       </Grid>
-    </main>
+    </Box>
   );
 }
