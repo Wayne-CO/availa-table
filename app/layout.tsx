@@ -1,4 +1,5 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import type { Metadata } from "next";
 import "./globals.css";
 import theme from "@/lib/mui/themes/main";
@@ -17,7 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <body>{children}</body>
+        <body>
+          <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+        </body>
       </ThemeProvider>
     </html>
   );
