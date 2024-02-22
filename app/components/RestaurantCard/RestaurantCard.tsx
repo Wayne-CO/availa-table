@@ -22,7 +22,7 @@ export default function RestaurantCard({ restaurant }: Props) {
   return (
     <Card sx={{ width: 296 }}>
       <CardActionArea LinkComponent={Link} href={`/restaurant/${slug}`}>
-        <CardMedia sx={{ height: "180px" }} image={mainImage} />
+        <CardMedia sx={{ height: "127px" }} image={mainImage} />
         <CardContent
           sx={{
             minHeight: "130px",
