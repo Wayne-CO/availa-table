@@ -27,13 +27,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    photoWidth: 164,
-    photoHeight: 164,
+    photoWidth: 226,
+    photoHeight: 175,
     imageListProps: {
       cols: 3,
       children: "",
       sx: {
-        width: 500,
+        width: 730,
         height: 450,
       },
     },
