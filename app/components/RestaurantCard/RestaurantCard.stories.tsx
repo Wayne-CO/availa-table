@@ -15,11 +15,11 @@ export const Default: Story = {
     restaurant: {
       id: 1,
       slug: "pizza-hut-ottawa",
-      name: "Pizza Hut",
+      name: "pizza hut",
       location: {
-        name: "Toronto",
+        name: "toronto",
       },
-      cuisine: { name: "Canadian" },
+      cuisine: { name: "canadian" },
       price: "CHEAP",
       mainImage:
         "https://resizer.otstatic.com/v2/photos/wide-huge/2/31852905.jpg",

@@ -49,6 +49,7 @@ export default function RestaurantCard({ restaurant }: Props) {
             textOverflow="ellipsis"
             overflow="hidden"
             whiteSpace="nowrap"
+            textTransform="capitalize"
           >
             {location.name} • {cuisine.name}
           </Typography>
