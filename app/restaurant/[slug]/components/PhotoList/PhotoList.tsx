@@ -7,7 +7,7 @@ type Props = {
   photos: string[];
   photoWidth: number;
   photoHeight: number;
-  imageListProps: ImageListProps;
+  imageListProps: Pick<ImageListProps, "gap" | "cols" | "sx" | "children">;
 };
 
 export default function PhotoList({

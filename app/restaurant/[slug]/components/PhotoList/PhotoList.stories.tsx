@@ -32,8 +32,9 @@ export const Default: Story = {
     imageListProps: {
       cols: 3,
       children: "",
+      gap: 5,
       sx: {
-        width: 730,
+        width: 705,
         height: 450,
       },
     },
