@@ -49,6 +49,7 @@ export default function RestaurantCard({ restaurant }: Props) {
             textOverflow="ellipsis"
             overflow="hidden"
             whiteSpace="nowrap"
+            textTransform="capitalize"
           >
             {location.name} • {cuisine.name}
           </Typography>
@@ -59,7 +60,7 @@ export default function RestaurantCard({ restaurant }: Props) {
             </Box>
             <Box pr="5px">*****</Box>
             <Box>
-              <Typography color="text.secondary" pr="3px">
+              <Typography color="text.secondary" pr="3px" variant="body2">
                 (1,234) •
               </Typography>
             </Box>
@@ -68,10 +69,7 @@ export default function RestaurantCard({ restaurant }: Props) {
             </Box>
           </Box>
 
-          <Typography
-            color="text.secondary"
-            fontSize={theme.typography.pxToRem(14)}
-          >
+          <Typography color="text.secondary" variant="body2">
             Guests who booked today: 100
           </Typography>
         </CardContent>
