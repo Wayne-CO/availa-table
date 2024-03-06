@@ -1,4 +1,5 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import TitleSection from "@/app/components/TitleSection";
 
 type Props = {
   title: string;
@@ -6,17 +7,11 @@ type Props = {
 };
 
 export default function Description({ title, description }: Props) {
-  const theme = useTheme();
-
   return (
     <Box>
-      <Typography
-        variant="h2"
-        fontSize={theme.typography.pxToRem(24)}
-        p="16px 30px"
-      >
-        {title}
-      </Typography>
+      <Box p="30px 16px">
+        <TitleSection title={title} />
+      </Box>
       <Box px={6}>
         <Box pb={1}>Stars</Box>
         <Typography color="text.secondary">{description}</Typography>
