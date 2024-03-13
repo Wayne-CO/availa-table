@@ -1,6 +1,6 @@
+import { useArgs } from "@storybook/preview-api";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { useState } from "react";
 import RestaurantNavBar from "./RestaurantNavBar";
 
 const meta: Meta<typeof RestaurantNavBar> = {
@@ -10,22 +10,24 @@ const meta: Meta<typeof RestaurantNavBar> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-function NavBarContainer() {
-  const [value, setValue] = useState(0);
-
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
-
-  return (
-    <RestaurantNavBar
-      tabs={[{ label: "overview" }, { label: "menu" }]}
-      value={value}
-      handleTabChange={handleTabChange}
-    />
-  );
-}
-
 export const Default: Story = {
-  render: () => <NavBarContainer />,
+  args: {
+    tabs: [{ label: "overview" }, { label: "menu" }],
+    value: 0,
+  },
+  render: function Render(args) {
+    const [{ value }, updateArgs] = useArgs();
+
+    function handleTabChange(event: React.SyntheticEvent, value: number) {
+      updateArgs({ value: value });
+    }
+
+    return (
+      <RestaurantNavBar
+        {...args}
+        value={value}
+        handleTabChange={handleTabChange}
+      />
+    );
+  },
 };
