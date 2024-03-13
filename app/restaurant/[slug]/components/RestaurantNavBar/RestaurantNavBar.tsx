@@ -1,4 +1,4 @@
-import { Box, Tab, Tabs } from "@mui/material";
+import { Tab, Tabs } from "@mui/material";
 
 type Props = {
   handleTabChange: (event: React.SyntheticEvent, newValue: number) => void;
@@ -19,16 +19,19 @@ export default function RestaurantNavBar({
   tabs,
 }: Props) {
   return (
-    <Box>
-      <Tabs
-        value={value}
-        onChange={handleTabChange}
-        aria-label="basic tabs example"
-      >
-        {tabs.map(({ label }, index) => (
-          <Tab key={index} label={label} {...a11yProps(index)} />
-        ))}
-      </Tabs>
-    </Box>
+    <Tabs
+      value={value}
+      onChange={handleTabChange}
+      aria-label="basic tabs example"
+    >
+      {tabs.map(({ label }, index) => (
+        <Tab
+          key={index}
+          label={label}
+          {...a11yProps(index)}
+          sx={{ width: 250 }}
+        />
+      ))}
+    </Tabs>
   );
 }
