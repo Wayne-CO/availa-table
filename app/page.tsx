@@ -1,6 +1,8 @@
-import Button from "@mui/material/Button";
+import { Box, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Prisma } from "@prisma/client";
 import { prisma } from "lib/prisma";
+import RestaurantCard from "./components/RestaurantCard";
 
 type RestaurantsCardData = Prisma.PromiseReturnType<typeof fetchRestaurants>;
 
@@ -33,10 +35,19 @@ const fetchRestaurants = async () => {
 export default async function Home() {
   const restaurants = await fetchRestaurants();
 
-  console.log("restaurants :>> ", restaurants);
   return (
-    <div>
-      <Button variant="contained">Hello</Button>
-    </div>
+    <Box component="main" width="1272px" margin="auto" px="20px">
+      <Typography variant="h4" mb="54px">
+        EXPLORE YOUR OPTIONS
+      </Typography>
+
+      <Grid container spacing={2}>
+        {restaurants.map((restaurant) => (
+          <Grid key={restaurant.id}>
+            <RestaurantCard restaurant={restaurant} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 }

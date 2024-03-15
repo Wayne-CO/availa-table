@@ -1,5 +1,5 @@
-import { PRICE } from "@prisma/client";
 import { Box, SvgIconProps, Typography, useTheme } from "@mui/material";
+import { PRICE } from "@prisma/client";
 
 type Props = {
   price: PRICE;
@@ -21,6 +21,7 @@ export default function Price(props: Props) {
       if (index < priceTiers[price]) {
         total.push(
           <Typography
+            key={index}
             component="span"
             color="text.secondary"
             fontSize={theme.typography.pxToRem(14)}
