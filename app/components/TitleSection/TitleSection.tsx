@@ -1,3 +1,4 @@
+"use client";
 import { Box, Typography, useTheme } from "@mui/material";
 
 type Props = {

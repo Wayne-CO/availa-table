@@ -7,6 +7,6 @@ const buildEslintCommand = (filenames) =>
 
 module.exports = {
   "*.{js,jsx,ts,tsx}": [buildEslintCommand],
-  "*.{ts,tsx}": () => "tsc-files --noEmit",
+  "*.{ts,tsx}": () => "tsc -p tsconfig.json --noEmit",
   "*": "prettier --write --ignore-unknown",
 };
