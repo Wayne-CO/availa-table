@@ -1,5 +1,5 @@
 "use client";
-import { Box } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { usePathname } from "next/navigation";
 import RestaurantNavBar from "./components/RestaurantNavBar";
 
@@ -17,12 +17,15 @@ export default function RestaurantDetailsLayout({ params, children }: Props) {
   ];
 
   return (
-    <Box component="main" width="1272px" margin="auto" px="20px">
-      <RestaurantNavBar
-        tabs={tabs}
-        value={!pathname.includes("menu") ? 0 : 1}
-      />
+    <Paper sx={{ width: "1272px", margin: "auto", px: "30px" }}>
+      <Box padding="10px 0 46px 0">
+        <RestaurantNavBar
+          tabs={tabs}
+          value={!pathname.includes("menu") ? 0 : 1}
+          tabsProps={{ centered: true }}
+        />
+      </Box>
       {children}
-    </Box>
+    </Paper>
   );
 }
