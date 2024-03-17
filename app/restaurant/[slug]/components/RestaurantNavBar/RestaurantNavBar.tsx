@@ -1,10 +1,11 @@
-import { Tab, Tabs, TabsProps } from "@mui/material";
-import Link from "next/link";
+import { Box, Tab, TabProps, Tabs, TabsProps } from "@mui/material";
 
 type Props = {
+  handleTabChange: (event: React.SyntheticEvent, newValue: number) => void;
   value: number;
-  tabs: { label: string; href: string }[];
+  tabs: { label: string }[];
   tabsProps?: TabsProps;
+  tabProps?: TabProps;
 };
 
 function a11yProps(index: number) {
@@ -14,19 +15,25 @@ function a11yProps(index: number) {
   };
 }
 
-export default function RestaurantNavBar({ value, tabs, tabsProps }: Props) {
+export default function RestaurantNavBar({
+  handleTabChange,
+  value,
+  tabs,
+  tabsProps,
+  tabProps,
+}: Props) {
   return (
-    <Tabs value={value} aria-label="Restaurant Details Nav" {...tabsProps}>
-      {tabs.map(({ label, href }, index) => (
-        <Tab
-          key={index}
-          label={label}
-          href={href}
-          {...a11yProps(index)}
-          sx={{ width: 250 }}
-          LinkComponent={Link}
-        />
-      ))}
-    </Tabs>
+    <Box>
+      <Tabs
+        value={value}
+        onChange={handleTabChange}
+        aria-label="basic tabs example"
+        {...tabsProps}
+      >
+        {tabs.map(({ label }, index) => (
+          <Tab key={index} label={label} {...a11yProps(index)} {...tabProps} />
+        ))}
+      </Tabs>
+    </Box>
   );
 }
