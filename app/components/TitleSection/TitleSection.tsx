@@ -9,7 +9,7 @@ export default function TitleSection({ title }: Props) {
   const theme = useTheme();
 
   return (
-    <Box display="flex" alignItems="center" p="0 0 32px 30px">
+    <Box display="flex" alignItems="center" p="0 30px 32px 30px">
       <Typography
         variant="h2"
         fontSize={theme.typography.pxToRem(24)}
