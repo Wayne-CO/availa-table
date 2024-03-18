@@ -1,12 +1,12 @@
 "use client";
 import { Box, Paper } from "@mui/material";
-import { Restaurant } from "@prisma/client";
 import { useState } from "react";
+import { RestaurantDetails } from "../../page";
 import Details from "../Details";
 import RestaurantNavBar from "../RestaurantNavBar";
 
 type Props = {
-  restaurant: Restaurant;
+  restaurant: RestaurantDetails;
 };
 
 export default function RestaurantContainer({ restaurant }: Props) {

@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import { Restaurant } from "@prisma/client";
 import TitleSection from "@/app/components/TitleSection";
+import { RestaurantDetails } from "../../page";
 import Description from "../Description";
 import PhotoList from "../PhotoList";
 
 type Props = {
-  restaurant: Restaurant;
+  restaurant: RestaurantDetails;
 };
 
 export default function Details({ restaurant }: Props) {

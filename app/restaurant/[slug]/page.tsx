@@ -1,5 +1,10 @@
+import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import RestaurantContainer from "./components/RestaurantContainer";
+
+export type RestaurantDetails = Prisma.PromiseReturnType<
+  typeof fetchRestaurantBySlug
+>;
 
 const fetchRestaurantBySlug = async (slug: string) => {
   const restaurant = await prisma.restaurant.findUniqueOrThrow({
