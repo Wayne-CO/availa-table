@@ -1,8 +1,13 @@
 "use client";
-import { Box } from "@mui/material";
+import { Box, Paper } from "@mui/material";
+import { Restaurant } from "@prisma/client";
 import { useState } from "react";
 import Details from "../Details";
 import RestaurantNavBar from "../RestaurantNavBar";
+
+type Props = {
+  restaurant: Restaurant;
+};
 
 export default function RestaurantContainer({ restaurant }: Props) {
   const [tabValue, setTabValue] = useState(0);
@@ -13,8 +18,8 @@ export default function RestaurantContainer({ restaurant }: Props) {
   };
 
   return (
-    <>
-      <Box padding="10px 0 46px 0">
+    <Paper sx={{ width: 816, padding: "10px 0 46px 0", mt: 8 }}>
+      <Box pb={5.75}>
         <RestaurantNavBar
           tabs={tabs}
           value={tabValue}
@@ -26,6 +31,6 @@ export default function RestaurantContainer({ restaurant }: Props) {
       {tabValue === 0 && <Details restaurant={restaurant} />}
 
       {tabValue === 1 && "menu"}
-    </>
+    </Paper>
   );
 }

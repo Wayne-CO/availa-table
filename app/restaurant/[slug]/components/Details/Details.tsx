@@ -1,4 +1,4 @@
-import { Box, Paper } from "@mui/material";
+import { Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Restaurant } from "@prisma/client";
 import TitleSection from "@/app/components/TitleSection";
@@ -11,8 +11,8 @@ type Props = {
 
 export default function Details({ restaurant }: Props) {
   return (
-    <Paper sx={{ width: 816 }}>
-      <Box pb={2}>
+    <>
+      <Box pb={4}>
         <TitleSection title="restaurant details" />
       </Box>
       <Grid container pb="62px">
@@ -21,9 +21,7 @@ export default function Details({ restaurant }: Props) {
         </Grid>
       </Grid>
 
-      <Box pb={4}>
-        <TitleSection title="photos" />
-      </Box>
+      <TitleSection title="photos" />
       <Grid container sx={{ px: 8 }}>
         <Grid xs={12}>
           <PhotoList
@@ -37,6 +35,6 @@ export default function Details({ restaurant }: Props) {
           />
         </Grid>
       </Grid>
-    </Paper>
+    </>
   );
 }
