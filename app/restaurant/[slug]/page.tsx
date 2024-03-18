@@ -1,4 +1,3 @@
-import { Paper } from "@mui/material";
 import { prisma } from "@/lib/prisma";
 import RestaurantContainer from "./components/RestaurantContainer";
 
@@ -28,9 +27,5 @@ type Props = {
 export default async function RestaurantDetails({ params }: Props) {
   const restaurant = await fetchRestaurantBySlug(params.slug);
 
-  return (
-    <Paper>
-      <RestaurantContainer restaurant={restaurant} />
-    </Paper>
-  );
+  return <RestaurantContainer restaurant={restaurant} />;
 }

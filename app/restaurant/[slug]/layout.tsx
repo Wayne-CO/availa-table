@@ -7,7 +7,7 @@ type Props = {
 
 export default function RestaurantDetailsLayout({ children }: Props) {
   return (
-    <Box component="main" sx={{ width: "1272px", margin: "auto", px: "30px" }}>
+    <Box component="main" sx={{ width: "1272px", margin: "auto", px: "20px" }}>
       {children}
     </Box>
   );
