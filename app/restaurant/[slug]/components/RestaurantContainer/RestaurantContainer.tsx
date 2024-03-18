@@ -1,18 +1,12 @@
 "use client";
 import { Box } from "@mui/material";
-import { useParams } from "next/navigation";
 import { useState } from "react";
 import Details from "../Details";
 import RestaurantNavBar from "../RestaurantNavBar";
 
 export default function RestaurantContainer({ restaurant }: Props) {
   const [tabValue, setTabValue] = useState(0);
-  const params = useParams();
-
-  const tabs = [
-    { label: "overview", href: `/restaurant/${params.slug}` },
-    { label: "menu", href: `/restaurant/${params.slug}/menu` },
-  ];
+  const tabs = [{ label: "overview" }, { label: "menu" }];
 
   const handleTabChange = (event: React.SyntheticEvent, value: number) => {
     setTabValue(value);
