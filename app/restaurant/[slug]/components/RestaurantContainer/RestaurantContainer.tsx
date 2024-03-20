@@ -3,6 +3,7 @@ import { Box, Paper } from "@mui/material";
 import { useState } from "react";
 import { RestaurantDetails } from "../../page";
 import Details from "../Details";
+import Menu from "../Menu";
 import RestaurantNavBar from "../RestaurantNavBar";
 
 type Props = {
@@ -30,7 +31,7 @@ export default function RestaurantContainer({ restaurant }: Props) {
       </Box>
       {tabValue === 0 && <Details restaurant={restaurant} />}
 
-      {tabValue === 1 && "menu"}
+      {tabValue === 1 && <Menu restaurant={restaurant} />}
     </Paper>
   );
 }
