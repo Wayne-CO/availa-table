@@ -8,7 +8,7 @@ type Props = {
 
 export default function MenuCard({ name, price, description }: Props) {
   return (
-    <Paper sx={{ padding: "10px" }}>
+    <Paper variant="outlined" square={true} sx={{ padding: "10px" }}>
       <Box sx={{ height: 148 }}>
         <Box display="flex" pb={1} justifyContent="space-between">
           <Typography
