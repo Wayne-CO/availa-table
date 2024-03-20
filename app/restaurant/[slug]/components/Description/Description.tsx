@@ -7,7 +7,7 @@ type Props = {
 export default function Description({ description }: Props) {
   return (
     <Box>
-      <Box px={6}>
+      <Box px="64px">
         <Box pb={1}>Stars</Box>
         <Typography color="text.secondary">{description}</Typography>
       </Box>
