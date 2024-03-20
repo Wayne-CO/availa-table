@@ -31,3 +31,27 @@ export const Default: Story = {
     );
   },
 };
+
+export const InRestaurantDetails: Story = {
+  args: {
+    tabs: [{ label: "overview" }, { label: "menu" }],
+    value: 0,
+    tabsProps: { centered: true },
+    tabProps: { sx: { width: 250 } },
+  },
+  render: function Render(args) {
+    const [{ value }, updateArgs] = useArgs();
+
+    function handleTabChange(event: React.SyntheticEvent, value: number) {
+      updateArgs({ value: value });
+    }
+
+    return (
+      <RestaurantNavBar
+        {...args}
+        value={value}
+        handleTabChange={handleTabChange}
+      />
+    );
+  },
+};
