@@ -25,7 +25,7 @@ export default function RestaurantContainer({ restaurant }: Props) {
           value={tabValue}
           handleTabChange={handleTabChange}
           tabsProps={{ centered: true }}
-          tabProps={{ sx: { width: 250 } }}
+          tabProps={{ sx: { width: 250, letterSpacing: "0.02857em" } }}
         />
       </Box>
       {tabValue === 0 && <Details restaurant={restaurant} />}

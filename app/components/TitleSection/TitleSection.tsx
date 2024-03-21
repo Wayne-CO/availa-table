@@ -16,6 +16,7 @@ export default function TitleSection({ title }: Props) {
         flexShrink="0"
         pr="30px"
         textTransform="capitalize"
+        fontWeight="400"
       >
         {title}
       </Typography>
