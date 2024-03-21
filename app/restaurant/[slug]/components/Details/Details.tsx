@@ -12,7 +12,7 @@ type Props = {
 export default function Details({ restaurant }: Props) {
   return (
     <>
-      <Box pb={4}>
+      <Box>
         <TitleSection title="restaurant details" />
       </Box>
       <Grid container pb="62px">
