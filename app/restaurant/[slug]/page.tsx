@@ -17,6 +17,7 @@ const fetchRestaurantBySlug = async (slug: string) => {
       images: true,
       description: true,
       slug: true,
+      items: true,
     },
   });
 
