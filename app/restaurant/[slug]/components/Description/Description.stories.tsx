@@ -4,6 +4,13 @@ import Description from "./Description";
 
 const meta: Meta<typeof Description> = {
   component: Description,
+  decorators: [
+    (Story) => (
+      <div style={{ width: "688px" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
