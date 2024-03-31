@@ -35,5 +35,14 @@ type Props = {
 export default async function Search({ searchParams }: Props) {
   const restaurants = await fetchRestaurantsByCity(searchParams.city);
   console.log(restaurants);
-  return <div>Search</div>;
+
+  return (
+    <>
+      {restaurants.length ? (
+        JSON.stringify({ restaurants })
+      ) : (
+        <p>Sorry there are no restaurants in this area.</p>
+      )}
+    </>
+  );
 }
