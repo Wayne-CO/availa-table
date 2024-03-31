@@ -37,7 +37,9 @@ const fetchCuisines = () => {
 
 type Props = {
   searchParams: {
-    city: string;
+    city?: string;
+    cuisine?: string;
+    price?: string;
   };
 };
 
@@ -45,8 +47,6 @@ export default async function Search({ searchParams }: Props) {
   const restaurants = await fetchRestaurantsByCity(searchParams.city);
   const locations = await fetchLocations();
   const cuisines = await fetchCuisines();
-
-  console.log(restaurants);
 
   return (
     <>
