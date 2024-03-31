@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import SearchSideBar from "./SearchSideBar";
 
 const fetchRestaurantsByCity = (city: string | undefined) => {
   const select = {
@@ -26,6 +27,14 @@ const fetchRestaurantsByCity = (city: string | undefined) => {
   });
 };
 
+const fetchLocations = () => {
+  return prisma.location.findMany();
+};
+
+const fetchCuisines = () => {
+  return prisma.cuisine.findMany();
+};
+
 type Props = {
   searchParams: {
     city: string;
@@ -34,10 +43,14 @@ type Props = {
 
 export default async function Search({ searchParams }: Props) {
   const restaurants = await fetchRestaurantsByCity(searchParams.city);
+  const locations = await fetchLocations();
+  const cuisines = await fetchCuisines();
+
   console.log(restaurants);
 
   return (
     <>
+      <SearchSideBar locations={locations} cuisines={cuisines} />
       {restaurants.length ? (
         JSON.stringify({ restaurants })
       ) : (
