@@ -31,7 +31,6 @@ export const Default: Story = {
     photoHeight: 175,
     imageListProps: {
       cols: 3,
-      children: "",
       gap: 5,
       sx: {
         width: 705,
