@@ -25,9 +25,23 @@ export default function RestaurantContainer({ restaurant }: Props) {
           tabs={tabs}
           value={tabValue}
           handleTabChange={handleTabChange}
-          tabsProps={{ centered: true }}
+          tabsProps={{
+            centered: true,
+            sx: {
+              "& .MuiTab-root.Mui-selected": {
+                color: "#2196F3",
+              },
+              "& .MuiTabs-indicator": {
+                backgroundColor: "#2196F3",
+              },
+            },
+          }}
           tabProps={{
-            sx: { width: 250, letterSpacing: "0.02857em", pb: "9px" },
+            sx: {
+              width: 250,
+              letterSpacing: "0.02857em",
+              pb: "9px",
+            },
           }}
         />
       </Box>
