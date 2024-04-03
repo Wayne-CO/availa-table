@@ -38,6 +38,7 @@ export default function MenuCard({ name, price, description }: Props) {
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "normal",
+            letterSpacing: "0.1px",
             color: "#00000099",
           }}
         >
