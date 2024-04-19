@@ -1,8 +1,11 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Prisma } from "@prisma/client";
+import Image from "next/image";
 import { prisma } from "lib/prisma";
 import RestaurantCard from "./components/RestaurantCard";
+
+import bannerMain from "../public/banner-main.svg";
 
 type RestaurantsCardData = Prisma.PromiseReturnType<typeof fetchRestaurants>;
 
@@ -36,18 +39,35 @@ export default async function Home() {
   const restaurants = await fetchRestaurants();
 
   return (
-    <Box component="main" width="1272px" margin="auto" px="20px">
-      <Typography variant="h4" mb="54px">
-        EXPLORE YOUR OPTIONS
-      </Typography>
+    <Box>
+      <Box
+        position="absolute"
+        height="696px"
+        width="100%"
+        overflow="hidden"
+        zIndex="-1"
+      >
+        <Image
+          alt="Table and Chairs"
+          src={bannerMain}
+          quality={100}
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: "cover",
+          }}
+        />
+      </Box>
 
-      <Grid container spacing={2}>
-        {restaurants.map((restaurant) => (
-          <Grid key={restaurant.id}>
-            <RestaurantCard restaurant={restaurant} />
-          </Grid>
-        ))}
-      </Grid>
+      <Box component="main" width="1272px" margin="auto" px="20px" pt="646px">
+        <Grid container spacing={2}>
+          {restaurants.map((restaurant) => (
+            <Grid key={restaurant.id}>
+              <RestaurantCard restaurant={restaurant} />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </Box>
   );
 }
