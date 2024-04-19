@@ -1,4 +1,11 @@
-import { Box, Typography } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import {
+  Box,
+  Button,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { Prisma } from "@prisma/client";
 import Image from "next/image";
@@ -60,7 +67,7 @@ export default async function Home() {
         />
       </Box>
 
-      <Box component="main" width="1272px" margin="auto" px="20px">
+      <Box component="main" width="1272px" margin="auto" px="20px" pt="40px">
         <Box display="flex">
           <Image alt="Availatable" src={avaliaTableLogo} />
         </Box>
@@ -79,7 +86,38 @@ export default async function Home() {
           </Typography>
         </Typography>
 
-        <Box component="main" pt="646px">
+        <Box textAlign="center" pt="40px">
+          <TextField
+            id="input-with-icon-textfield"
+            placeholder="State, city, or town..."
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+            variant="outlined"
+            sx={{
+              width: "815px",
+              // To not back background color spill over border with radius applied.
+              overflow: "hidden",
+              "& .MuiOutlinedInput-root": {
+                background: "#fff",
+              },
+            }}
+          />
+          <Box pt="16px" pb="278px">
+            <Button
+              variant="contained"
+              sx={{ width: "192px", background: "#2196F3" }}
+            >
+              FIND
+            </Button>
+          </Box>
+        </Box>
+
+        <Box component="main">
           <Grid container spacing={2}>
             {restaurants.map((restaurant) => (
               <Grid key={restaurant.id}>
