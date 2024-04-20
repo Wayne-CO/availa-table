@@ -10,7 +10,7 @@ export default function Header() {
     <>
       <Box
         position="absolute"
-        height="696px"
+        height="474px"
         width="100%"
         overflow="hidden"
         zIndex="-1"
@@ -22,7 +22,7 @@ export default function Header() {
           fill
           sizes="100vw"
           style={{
-            objectFit: "cover",
+            objectFit: "fill",
           }}
         />
       </Box>
