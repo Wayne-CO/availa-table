@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
 import Image from "next/image";
+import NavBar from "@/components/NavBar";
+import SearchBar from "@/components/SearchBar";
 import avaliaTableLogo from "@/public/availatable-logo.svg";
-import bannerMain from "@/public/banner-main1.5x.png";
-import NavBar from "../NavBar";
-import SearchBar from "../SearchBar";
+import bannerSearch from "@/public/banner-search1.5x.png";
 
 export default function Header() {
   return (
@@ -16,8 +16,8 @@ export default function Header() {
         zIndex="-1"
       >
         <Image
-          alt="Table and Chairs"
-          src={bannerMain}
+          alt="Chairs"
+          src={bannerSearch}
           quality={100}
           fill
           sizes="100vw"

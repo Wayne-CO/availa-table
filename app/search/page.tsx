@@ -1,5 +1,6 @@
 import { PRICE } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import Header from "./components/Header";
 import SearchSideBar from "./SearchSideBar";
 
 type SearchParams = {
@@ -48,6 +49,7 @@ export default async function Search({ searchParams }: Props) {
 
   return (
     <>
+      <Header />
       <SearchSideBar
         locations={locations}
         cuisines={cuisines}
