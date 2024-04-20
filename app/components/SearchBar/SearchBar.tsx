@@ -32,7 +32,7 @@ export default function SearchBar() {
         value={location}
         onChange={(e) => setLocation(e.target.value)}
       />
-      <Box pt="16px" pb="278px">
+      <Box pt="16px">
         <Button
           variant="contained"
           sx={{ width: "192px", background: "#2196F3" }}
