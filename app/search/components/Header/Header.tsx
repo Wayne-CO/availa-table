@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import NavBar from "@/components/NavBar";
 import SearchBar from "@/components/SearchBar";
@@ -29,6 +29,17 @@ export default function Header() {
 
       <Box component="main" width="1272px" margin="auto" px="20px" pt="40px">
         <NavBar logoSrc={avaliaTableLogo} logoAlt="Availatable" />
+
+        <Typography
+          variant="h1"
+          fontSize="60px"
+          color="#FFFFFF"
+          fontWeight="200"
+          pt="36px"
+          textAlign="center"
+        >
+          SEARCH RESULTS
+        </Typography>
 
         <Box textAlign="center" pt="40px">
           <SearchBar />
