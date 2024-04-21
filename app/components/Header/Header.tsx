@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import avaliaTableLogo from "@/public/availatable-logo.svg";
 import bannerMain from "@/public/banner-main1.5x.png";
@@ -29,6 +29,20 @@ export default function Header() {
 
       <Box component="main" width="1272px" margin="auto" px="20px" pt="40px">
         <NavBar logoSrc={avaliaTableLogo} logoAlt="Availatable" />
+
+        <Typography
+          variant="h1"
+          fontSize="60px"
+          color="#FFFFFF"
+          fontWeight="200"
+          pt="36px"
+          textAlign="center"
+        >
+          AVAILA
+          <Typography component="span" fontSize="inherit" fontWeight="900">
+            TABLE
+          </Typography>
+        </Typography>
 
         <Box textAlign="center" pt="40px">
           <SearchBar />
