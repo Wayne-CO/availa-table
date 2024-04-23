@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { PRICE } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import Header from "./components/Header";
@@ -50,16 +51,19 @@ export default async function Search({ searchParams }: Props) {
   return (
     <>
       <Header />
-      <SearchSideBar
-        locations={locations}
-        cuisines={cuisines}
-        searchParams={searchParams}
-      />
-      {restaurants.length ? (
-        JSON.stringify({ restaurants })
-      ) : (
-        <p>Sorry there are no restaurants in this area.</p>
-      )}
+
+      <Box component="main" width="1272px" margin="auto" px="20px" pt="270px">
+        <SearchSideBar
+          locations={locations}
+          cuisines={cuisines}
+          searchParams={searchParams}
+        />
+        {restaurants.length ? (
+          JSON.stringify({ restaurants })
+        ) : (
+          <p>Sorry there are no restaurants in this area.</p>
+        )}
+      </Box>
     </>
   );
 }

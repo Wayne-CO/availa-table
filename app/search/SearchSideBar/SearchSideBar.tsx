@@ -1,5 +1,9 @@
+"use client";
+import { Paper } from "@mui/material";
 import { Cuisine, Location, PRICE } from "@prisma/client";
 import Link from "next/link";
+import { useState } from "react";
+import FilterSection from "../components/FilterSection";
 
 const prices = [
   { price: PRICE.CHEAP, label: "$" },
@@ -18,30 +22,25 @@ export default function SearchSideBar({
   cuisines,
   searchParams,
 }: Props) {
+  const currentCity = locations.findIndex(
+    (location) => location.name === searchParams.city,
+  );
+  const [city, setCity] = useState(currentCity);
+
+  const handleCityChange = (event: React.SyntheticEvent, cityIndex: number) => {
+    setCity(cityIndex);
+  };
+
   return (
-    <div>
-      <div>
-        <h3>Location</h3>
-        <ul>
-          {locations.map((location) => {
-            return (
-              <li key={location.id}>
-                <Link
-                  href={{
-                    pathname: "search",
-                    query: {
-                      ...searchParams,
-                      city: location.name,
-                    },
-                  }}
-                >
-                  {location.name}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+    <Paper sx={{ width: "400px" }}>
+      <FilterSection
+        title="Cities"
+        filters={locations}
+        searchParams={searchParams}
+        value={city}
+        handleValueChange={handleCityChange}
+      />
+
       <div>
         <h3>Cuisine</h3>
         <ul>
@@ -86,6 +85,6 @@ export default function SearchSideBar({
           })}
         </ul>
       </div>
-    </div>
+    </Paper>
   );
 }
