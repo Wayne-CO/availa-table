@@ -2,12 +2,7 @@ import { Box, Tab, Tabs } from "@mui/material";
 import { Cuisine, Location } from "@prisma/client";
 import Link from "next/link";
 import TitleSection from "@/app/components/TitleSection";
-
-// const prices = [
-//   { price: PRICE.CHEAP, label: "$" },
-//   { price: PRICE.REGULAR, label: "$$" },
-//   { price: PRICE.EXPENSIVE, label: "$$$" },
-// ];
+import { PriceFilter } from "../../SearchSideBar/SearchSideBar";
 
 function a11yProps(index: number) {
   return {
@@ -18,9 +13,10 @@ function a11yProps(index: number) {
 
 type Props = {
   title: string;
-  filters: Location[] | Cuisine[];
+  filters: Location[] | Cuisine[] | PriceFilter;
   searchParams: { city?: string; cuisine?: string; price?: string };
   value: number;
+  searchQuery: "city" | "cuisine" | "price";
   handleValueChange: (event: React.SyntheticEvent, cityIndex: number) => void;
 };
 
@@ -29,6 +25,7 @@ export default function FilterSection({
   filters,
   searchParams,
   value,
+  searchQuery,
   handleValueChange,
 }: Props) {
   return (
@@ -51,16 +48,17 @@ export default function FilterSection({
         }}
       >
         {filters.map((filter, index) => {
+          const label = filter?.label || filter.name;
           return (
             <Tab
               component={Link}
-              label={filter.name}
+              label={label}
               key={filter.id}
               href={{
                 pathname: "search",
                 query: {
                   ...searchParams,
-                  city: filter.name,
+                  [searchQuery]: filter.name,
                 },
               }}
               {...a11yProps(index)}
