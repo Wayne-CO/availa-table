@@ -52,7 +52,7 @@ export default async function Search({ searchParams }: Props) {
     <>
       <Header />
 
-      <Box component="main" width="1272px" margin="auto" px="20px" pt="270px">
+      <Box component="main" width="1272px" margin="auto" px="20px" pt="44px">
         <SearchSideBar
           locations={locations}
           cuisines={cuisines}

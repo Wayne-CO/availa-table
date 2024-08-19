@@ -30,8 +30,7 @@ export default function FilterSection({
 }: Props) {
   return (
     <Box>
-      <Box p="26px 0 16px">
-        {/* Todo: Fix padding in component */}
+      <Box p="0 30px 16px 30px">
         <TitleSection title={title} />
       </Box>
       <Tabs

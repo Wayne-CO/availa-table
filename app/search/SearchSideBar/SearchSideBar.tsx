@@ -1,5 +1,5 @@
 "use client";
-import { Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { Cuisine, Location, PRICE } from "@prisma/client";
 import { useState } from "react";
 import FilterSection from "../components/FilterSection";
@@ -57,16 +57,18 @@ export default function SearchSideBar({
 
   return (
     <Paper sx={{ width: "400px" }}>
-      <FilterSection
-        title="Cities"
-        filters={locations}
-        searchParams={searchParams}
-        searchQuery="city"
-        value={city}
-        handleValueChange={handleCityChange}
-      />
+      <Box p="26px 0 46px">
+        <FilterSection
+          title="Cities"
+          filters={locations}
+          searchParams={searchParams}
+          searchQuery="city"
+          value={city}
+          handleValueChange={handleCityChange}
+        />
+      </Box>
 
-      <div>
+      <Box pb="46px">
         <FilterSection
           title="Cuisine"
           filters={cuisines}
@@ -75,8 +77,8 @@ export default function SearchSideBar({
           searchQuery="cuisine"
           handleValueChange={handleCuisineChange}
         />
-      </div>
-      <div>
+      </Box>
+      <Box pb="46px">
         <FilterSection
           title="Price"
           filters={prices}
@@ -85,7 +87,7 @@ export default function SearchSideBar({
           searchQuery="price"
           handleValueChange={handlePriceChange}
         />
-      </div>
+      </Box>
     </Paper>
   );
 }
