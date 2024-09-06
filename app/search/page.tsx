@@ -1,7 +1,8 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { PRICE } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import Header from "./components/Header";
+import RestaurantCard from "./components/RestaurantCard/RestaurantCard";
 import SearchSideBar from "./SearchSideBar";
 
 type SearchParams = {
@@ -53,16 +54,28 @@ export default async function Search({ searchParams }: Props) {
       <Header />
 
       <Box component="main" width="1272px" margin="auto" px="20px" pt="44px">
-        <SearchSideBar
-          locations={locations}
-          cuisines={cuisines}
-          searchParams={searchParams}
-        />
-        {restaurants.length ? (
-          JSON.stringify({ restaurants })
-        ) : (
-          <p>Sorry there are no restaurants in this area.</p>
-        )}
+        <Box display="flex">
+          <Box pr={2}>
+            <SearchSideBar
+              locations={locations}
+              cuisines={cuisines}
+              searchParams={searchParams}
+            />
+          </Box>
+          {restaurants.length ? (
+            <Box width="100%">
+              {restaurants.map((restaurant) => (
+                <Box pb={2} key={restaurant.id}>
+                  <RestaurantCard restaurant={restaurant} />
+                </Box>
+              ))}
+            </Box>
+          ) : (
+            <Typography pt={6}>
+              Sorry there are no restaurants in this area.
+            </Typography>
+          )}
+        </Box>
       </Box>
     </>
   );
