@@ -31,6 +31,9 @@ export default function Details({ restaurant }: Props) {
             imageListProps={{
               cols: 3,
               gap: 5,
+              sx: {
+                margin: 0,
+              },
             }}
           />
         </Grid>
