@@ -47,7 +47,7 @@ export default function FilterSection({
         }}
       >
         {filters.map((filter, index) => {
-          const label = filter?.label || filter.name;
+          const label = filter.name;
           return (
             <Tab
               component={Link}
