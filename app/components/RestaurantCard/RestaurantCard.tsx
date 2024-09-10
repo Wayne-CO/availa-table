@@ -10,6 +10,7 @@ import Link from "next/link";
 
 import { RestaurantCardData } from "@/app/page";
 import Price from "../Price/Price";
+import Rating from "../Rating";
 
 type Props = {
   restaurant: RestaurantCardData;
@@ -17,7 +18,8 @@ type Props = {
 
 export default function RestaurantCard({ restaurant }: Props) {
   const theme = useTheme();
-  const { mainImage, name, cuisine, location, price, slug } = restaurant;
+  const { mainImage, name, cuisine, location, price, slug, reviews } =
+    restaurant;
 
   return (
     <Card sx={{ width: 296 }}>
@@ -54,19 +56,9 @@ export default function RestaurantCard({ restaurant }: Props) {
             {location.name} • {cuisine.name}
           </Typography>
 
-          <Box display="flex" alignItems="center" pb="2px">
-            <Box>
-              <Typography pr="5px">5</Typography>
-            </Box>
-            <Box pr="5px">*****</Box>
-            <Box>
-              <Typography color="text.secondary" pr="3px" variant="body2">
-                (1,234) •
-              </Typography>
-            </Box>
-            <Box>
-              <Price price={price} />
-            </Box>
+          <Box display="flex">
+            <Rating reviews={reviews} />
+            <Price price={price} />
           </Box>
 
           <Typography color="text.secondary" variant="body2">

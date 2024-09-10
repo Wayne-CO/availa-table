@@ -16,6 +16,7 @@ const fetchRestaurants = async () => {
       mainImage: true,
       price: true,
       slug: true,
+      reviews: true,
       cuisine: {
         select: {
           name: true,
