@@ -47,7 +47,7 @@ export default function FilterSection({
         }}
       >
         {filters.map((filter, index) => {
-          const label = filter.name;
+          const label = filter.name.toLowerCase();
           return (
             <Tab
               component={Link}
@@ -69,6 +69,7 @@ export default function FilterSection({
                 minHeight: "initial",
                 p: "4px 0 4px 14px",
                 textTransform: "capitalize",
+                alignItems: "baseline",
               }}
             />
           );
