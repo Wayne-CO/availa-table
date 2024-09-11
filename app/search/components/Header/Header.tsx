@@ -3,7 +3,7 @@ import Image from "next/image";
 import NavBar from "@/components/NavBar";
 import SearchBar from "@/components/SearchBar";
 import avaliaTableLogo from "@/public/availatable-logo.svg";
-import bannerSearch from "@/public/banner-search1.5x.png";
+import bannerSearch from "@/public/banner-search2x.png";
 
 export default function Header() {
   return (
