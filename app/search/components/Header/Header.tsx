@@ -3,7 +3,7 @@ import Image from "next/image";
 import NavBar from "@/components/NavBar";
 import SearchBar from "@/components/SearchBar";
 import avaliaTableLogo from "@/public/availatable-logo.svg";
-import bannerSearch from "@/public/banner-search2x.png";
+import bannerSearch from "@/public/banner-search.png";
 
 export default function Header() {
   return (
@@ -22,7 +22,7 @@ export default function Header() {
           fill
           sizes="100vw"
           style={{
-            objectFit: "fill",
+            objectFit: "cover",
           }}
         />
       </Box>
