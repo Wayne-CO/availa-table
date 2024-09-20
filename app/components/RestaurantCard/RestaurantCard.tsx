@@ -11,6 +11,7 @@ import Link from "next/link";
 import { RestaurantCardData } from "@/app/page";
 import { calculateReviewRatingAverage } from "@/app/utils/calculate";
 import Price from "../Price/Price";
+import Stars from "../Stars";
 
 type Props = {
   restaurant: RestaurantCardData;
@@ -63,7 +64,9 @@ export default function RestaurantCard({ restaurant }: Props) {
                   {calculateReviewRatingAverage(reviews).toFixed(1)}
                 </Typography>
               </Box>
-              <Box pr="5px">*****</Box>
+              <Box pr="5px">
+                <Stars reviews={reviews} />
+              </Box>
               <Box>
                 <Typography color="text.secondary" pr="3px" variant="body2">
                   ({reviews.length}) •
