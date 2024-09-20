@@ -4,12 +4,14 @@ import { calculateReviewRatingAverage } from "@/app/utils/calculate";
 
 type Props = {
   reviews: Review[];
+  rating?: number;
 };
 
-function Stars({ reviews }: Props) {
-  const rating = parseFloat(calculateReviewRatingAverage(reviews).toFixed(1));
+function Stars({ reviews, rating }: Props) {
+  const reviewRating =
+    rating ?? parseFloat(calculateReviewRatingAverage(reviews).toFixed(1));
 
-  return <Rating value={rating} precision={0.5} size="small" readOnly />;
+  return <Rating value={reviewRating} precision={0.5} size="small" readOnly />;
 }
 
 export default Stars;

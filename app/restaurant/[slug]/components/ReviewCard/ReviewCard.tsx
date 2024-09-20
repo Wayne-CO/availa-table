@@ -1,5 +1,6 @@
 import { Avatar, Box, Typography } from "@mui/material";
 import { Review } from "@prisma/client";
+import Stars from "@/app/components/Stars";
 
 type Props = {
   review: Review;
@@ -15,7 +16,7 @@ export default function ReviewCard({ review }: Props) {
         </Avatar>
       </Box>
       <Box>
-        <Box>Stars</Box>
+        <Stars rating={review.rating} />
         <Typography variant="subtitle2" pb={1}>
           {review.firstName} {review.lastName}
         </Typography>
