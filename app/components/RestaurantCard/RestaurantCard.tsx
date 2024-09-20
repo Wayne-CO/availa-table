@@ -57,21 +57,19 @@ export default function RestaurantCard({ restaurant }: Props) {
             {location.name} • {cuisine.name}
           </Typography>
 
-          <Box display="flex">
-            <Box display="flex" alignItems="center" pb="2px">
-              <Box>
-                <Typography pr="5px">
-                  {calculateReviewRatingAverage(reviews).toFixed(1)}
-                </Typography>
-              </Box>
-              <Box pr="5px">
-                <Stars reviews={reviews} />
-              </Box>
-              <Box>
-                <Typography color="text.secondary" pr="3px" variant="body2">
-                  ({reviews.length}) •
-                </Typography>
-              </Box>
+          <Box display="flex" pb="2px">
+            <Box>
+              <Typography variant="body2" pr="5px" color="text.secondary">
+                {calculateReviewRatingAverage(reviews).toFixed(1)}
+              </Typography>
+            </Box>
+            <Box pr="5px">
+              <Stars reviews={reviews} />
+            </Box>
+            <Box>
+              <Typography color="text.secondary" pr="3px" variant="body2">
+                ({reviews.length}) •
+              </Typography>
             </Box>
             <Price price={price} />
           </Box>

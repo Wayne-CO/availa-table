@@ -9,7 +9,7 @@ type Props = {
 function Stars({ reviews }: Props) {
   const rating = parseFloat(calculateReviewRatingAverage(reviews).toFixed(1));
 
-  return <Rating value={rating} precision={0.5} readOnly />;
+  return <Rating value={rating} precision={0.5} size="small" readOnly />;
 }
 
 export default Stars;

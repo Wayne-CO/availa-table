@@ -19,7 +19,7 @@ export default function Rating({ reviews }: Props) {
         <Stars reviews={reviews} />
       </Box>
       <Box>
-        <Typography color="text.secondary" pr="3px" variant="body2">
+        <Typography color="text.primary" pr="3px" variant="body2">
           {reviews.length} Review{reviews.length === 1 ? "" : "s"}
         </Typography>
       </Box>
