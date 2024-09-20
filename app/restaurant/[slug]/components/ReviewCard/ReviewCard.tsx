@@ -7,20 +7,20 @@ type Props = {
 
 export default function ReviewCard({ review }: Props) {
   return (
-    <>
-      <Box display="flex">
+    <Box display="flex" pl={6} pb={4}>
+      <Box pr={1}>
         <Avatar sx={{ bgcolor: "#2196F3" }}>
           {review.firstName[0]}
           {review.lastName[0]}
         </Avatar>
-        <Box>
-          <Box>Stars</Box>
-          <Typography>
-            {review.firstName} {review.lastName}
-          </Typography>
-          <Typography>{review.text}</Typography>
-        </Box>
       </Box>
-    </>
+      <Box>
+        <Box>Stars</Box>
+        <Typography variant="subtitle2" pb={1}>
+          {review.firstName} {review.lastName}
+        </Typography>
+        <Typography color="text.secondary">{review.text}</Typography>
+      </Box>
+    </Box>
   );
 }

@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { Review } from "@prisma/client";
 import TitleSection from "@/app/components/TitleSection";
 import ReviewCard from "../ReviewCard";
@@ -11,7 +12,9 @@ export default function Reviews({ reviews }: Props) {
     <>
       <TitleSection title={`Guest Reviews (${reviews.length})`} />
       {reviews.map((review) => (
-        <ReviewCard review={review} key={review.id} />
+        <Box pl={2} key={review.id}>
+          <ReviewCard review={review} />
+        </Box>
       ))}
     </>
   );
