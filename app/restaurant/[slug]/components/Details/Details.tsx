@@ -18,7 +18,10 @@ export default function Details({ restaurant }: Props) {
       </Box>
       <Grid container pb="62px">
         <Grid xs={12}>
-          <Description description={restaurant.description} />
+          <Description
+            description={restaurant.description}
+            reviews={restaurant.reviews}
+          />
         </Grid>
       </Grid>
 

@@ -9,8 +9,8 @@ import Typography from "@mui/material/Typography";
 import Link from "next/link";
 
 import { RestaurantCardData } from "@/app/page";
+import { calculateReviewRatingAverage } from "@/app/utils/calculate";
 import Price from "../Price/Price";
-import Rating from "../Rating";
 
 type Props = {
   restaurant: RestaurantCardData;
@@ -57,7 +57,19 @@ export default function RestaurantCard({ restaurant }: Props) {
           </Typography>
 
           <Box display="flex">
-            <Rating reviews={reviews} />
+            <Box display="flex" alignItems="center" pb="2px">
+              <Box>
+                <Typography pr="5px">
+                  {calculateReviewRatingAverage(reviews).toFixed(1)}
+                </Typography>
+              </Box>
+              <Box pr="5px">*****</Box>
+              <Box>
+                <Typography color="text.secondary" pr="3px" variant="body2">
+                  ({reviews.length}) •
+                </Typography>
+              </Box>
+            </Box>
             <Price price={price} />
           </Box>
 
