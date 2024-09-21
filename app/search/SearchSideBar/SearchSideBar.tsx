@@ -34,8 +34,12 @@ export default function SearchSideBar({
   );
 
   const [city, setCity] = useState(currentCity);
-  const [cuisine, setCuisine] = useState(currentCuisine === -1 && false);
-  const [price, setPrice] = useState(currentPrice === -1 && false);
+  const [cuisine, setCuisine] = useState<number | boolean>(
+    currentCuisine === -1 && false,
+  );
+  const [price, setPrice] = useState<number | boolean>(
+    currentPrice === -1 && false,
+  );
 
   const handleCityChange = (event: React.SyntheticEvent, cityIndex: number) => {
     setCity(cityIndex);

@@ -15,7 +15,7 @@ type Props = {
   title: string;
   filters: Location[] | Cuisine[] | PriceFilter;
   searchParams: { city?: string; cuisine?: string; price?: string };
-  value: number;
+  value: number | boolean;
   searchQuery: "city" | "cuisine" | "price";
   handleValueChange: (event: React.SyntheticEvent, cityIndex: number) => void;
 };
