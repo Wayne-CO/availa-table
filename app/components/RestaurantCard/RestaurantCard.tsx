@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, CardActionArea, useTheme } from "@mui/material";
+import { CardActionArea, useTheme } from "@mui/material";
 import Card from "@mui/material/Card";
 
 import CardContent from "@mui/material/CardContent";
@@ -9,9 +9,7 @@ import Typography from "@mui/material/Typography";
 import Link from "next/link";
 
 import { RestaurantCardData } from "@/app/page";
-import { calculateReviewRatingAverage } from "@/app/utils/calculate";
-import Price from "../Price/Price";
-import Stars from "../Stars";
+import RatingReview from "../RatingReview/RatingReview";
 
 type Props = {
   restaurant: RestaurantCardData;
@@ -57,22 +55,7 @@ export default function RestaurantCard({ restaurant }: Props) {
             {location.name} • {cuisine.name}
           </Typography>
 
-          <Box display="flex" pb="2px">
-            <Box>
-              <Typography variant="body2" pr="5px" color="text.secondary">
-                {calculateReviewRatingAverage(reviews).toFixed(1)}
-              </Typography>
-            </Box>
-            <Box pr="5px">
-              <Stars reviews={reviews} />
-            </Box>
-            <Box>
-              <Typography color="text.secondary" pr="3px" variant="body2">
-                ({reviews.length}) •
-              </Typography>
-            </Box>
-            <Price price={price} />
-          </Box>
+          <RatingReview reviews={reviews} price={price} />
 
           <Typography color="text.secondary" variant="body2">
             Guests who booked today: 100
