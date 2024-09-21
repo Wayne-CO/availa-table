@@ -16,7 +16,7 @@ export default function ReviewCard({ review }: Props) {
         </Avatar>
       </Box>
       <Box>
-        <Stars rating={review.rating} />
+        <Stars rating={review.rating} reviews={[]} />
         <Typography variant="subtitle2" pb={1}>
           {review.firstName} {review.lastName}
         </Typography>
