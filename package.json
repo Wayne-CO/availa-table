@@ -10,7 +10,6 @@
     "prepare": "husky install",
     "type-check": "tsc --noEmit",
     "watch:build": "tsc --watch",
-    "chromatic": "npx chromatic --project-token=chpt_514c0b4124b0256",
     "postinstall": "prisma generate"
   },
   "prisma": {
@@ -34,7 +33,6 @@
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
-    "chromatic": "^10.0.0",
     "eslint": "^8",
     "eslint-config-next": "^14.1.0",
     "eslint-config-prettier": "^9.0.0",
