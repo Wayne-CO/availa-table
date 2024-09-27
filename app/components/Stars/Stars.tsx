@@ -1,3 +1,4 @@
+import StarIcon from "@mui/icons-material/Star";
 import { Rating } from "@mui/material";
 import { Review } from "@prisma/client";
 import { calculateReviewRatingAverage } from "@/app/utils/calculate";
@@ -17,6 +18,7 @@ function Stars({ reviews, rating }: Props) {
       precision={0.5}
       sx={{ fontSize: "15px" }}
       size={"small"}
+      emptyIcon={<StarIcon sx={{ fontSize: "15px" }} />}
       readOnly
     />
   );
