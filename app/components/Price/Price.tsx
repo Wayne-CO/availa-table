@@ -32,7 +32,7 @@ export default function Price(props: Props) {
       }
     }
 
-    return <Box>{total}</Box>;
+    return <Box display="inline-flex">{total}</Box>;
   };
 
   return <>{renderPrice()}</>;

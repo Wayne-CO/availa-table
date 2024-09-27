@@ -12,13 +12,13 @@ type Props = {
 
 export default function RatingReview({ reviews, price }: Props) {
   return (
-    <Box display="flex" pb="2px">
+    <Box display="flex" pb="2px" alignItems="center">
       <Box>
         <Typography variant="body2" pr="5px" color="text.secondary">
           {calculateReviewRatingAverage(reviews).toFixed(1)}
         </Typography>
       </Box>
-      <Box pr="5px">
+      <Box display="inline-flex">
         <Stars reviews={reviews} />
       </Box>
       <Box>
