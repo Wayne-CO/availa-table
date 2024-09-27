@@ -11,7 +11,15 @@ function Stars({ reviews, rating }: Props) {
   const reviewRating =
     rating ?? parseFloat(calculateReviewRatingAverage(reviews).toFixed(1));
 
-  return <Rating value={reviewRating} precision={0.5} size="small" readOnly />;
+  return (
+    <Rating
+      value={reviewRating}
+      precision={0.5}
+      sx={{ fontSize: "15px" }}
+      size={"small"}
+      readOnly
+    />
+  );
 }
 
 export default Stars;
