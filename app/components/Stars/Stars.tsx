@@ -16,9 +16,9 @@ function Stars({ reviews, rating }: Props) {
     <Rating
       value={reviewRating}
       precision={0.5}
-      sx={{ fontSize: "15px" }}
+      sx={{ fontSize: "18px" }}
       size={"small"}
-      emptyIcon={<StarIcon sx={{ fontSize: "15px" }} />}
+      emptyIcon={<StarIcon sx={{ fontSize: "18px" }} />}
       readOnly
     />
   );

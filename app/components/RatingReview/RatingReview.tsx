@@ -18,7 +18,7 @@ export default function RatingReview({ reviews, price }: Props) {
           {calculateReviewRatingAverage(reviews).toFixed(1)}
         </Typography>
       </Box>
-      <Box display="inline-flex">
+      <Box display="inline-flex" pr="5px">
         <Stars reviews={reviews} />
       </Box>
       <Box>
