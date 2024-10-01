@@ -27,7 +27,7 @@ export default function Header() {
         />
       </Box>
 
-      <Box component="main" width="1272px" margin="auto" px="20px" pt="40px">
+      <Box component="main" width="1272px" margin="auto" px="20px" pt="30px">
         <NavBar logoSrc={avaliaTableLogo} logoAlt="Availatable" />
 
         <Typography
@@ -37,9 +37,15 @@ export default function Header() {
           fontWeight="200"
           pt="36px"
           textAlign="center"
+          lineHeight="72px"
         >
           AVAILA
-          <Typography component="span" fontSize="inherit" fontWeight="900">
+          <Typography
+            component="span"
+            fontSize="inherit"
+            fontWeight="900"
+            lineHeight="inherit"
+          >
             TABLE
           </Typography>
         </Typography>

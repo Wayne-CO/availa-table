@@ -8,15 +8,15 @@ type Props = {
 
 export default function ReviewCard({ review }: Props) {
   return (
-    <Box display="flex" pl={6} pb={4}>
-      <Box pr={1}>
+    <Box display="flex" p={2}>
+      <Box pr={1} pl="48px">
         <Avatar sx={{ bgcolor: "#2196F3" }}>
           {review.firstName[0]}
           {review.lastName[0]}
         </Avatar>
       </Box>
       <Box>
-        <Stars rating={review.rating} reviews={[]} />
+        <Stars rating={review.rating} reviews={[]} starSize="24px" />
         <Typography variant="subtitle2" pb={1}>
           {review.firstName} {review.lastName}
         </Typography>

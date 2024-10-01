@@ -11,15 +11,15 @@ export default function Rating({ reviews }: Props) {
   return (
     <Box display="flex" alignItems="center" pb="2px">
       <Box>
-        <Typography pr="5px">
+        <Typography pr="5px" variant="subtitle2">
           {calculateReviewRatingAverage(reviews).toFixed(1)}
         </Typography>
       </Box>
-      <Box pr="5px">
-        <Stars reviews={reviews} />
+      <Box pr="5px" display="inline-flex">
+        <Stars reviews={reviews} starSize="24px" />
       </Box>
       <Box>
-        <Typography color="text.primary" pr="3px" variant="body2">
+        <Typography color="text.primary" pr="3px" variant="subtitle2">
           {reviews.length} Review{reviews.length === 1 ? "" : "s"}
         </Typography>
       </Box>

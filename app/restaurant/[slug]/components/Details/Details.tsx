@@ -16,7 +16,7 @@ export default function Details({ restaurant }: Props) {
       <Box>
         <TitleSection title="restaurant details" />
       </Box>
-      <Grid container pb="62px">
+      <Grid container pb="30px">
         <Grid xs={12}>
           <Description
             description={restaurant.description}
@@ -27,7 +27,7 @@ export default function Details({ restaurant }: Props) {
 
       <TitleSection title="photos" />
       <Grid container sx={{ px: 8, pb: "62px" }}>
-        <Grid xs={12}>
+        <Grid xs={12} py="16px">
           <PhotoList
             photos={restaurant.images}
             photoWidth={226}

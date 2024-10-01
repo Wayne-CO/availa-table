@@ -30,9 +30,7 @@ export default function FilterSection({
 }: Props) {
   return (
     <Box>
-      <Box p="0 30px 16px 30px">
-        <TitleSection title={title} />
-      </Box>
+      <TitleSection title={title} />
       <Tabs
         orientation="vertical"
         value={value}

@@ -5,10 +5,11 @@ import { calculateReviewRatingAverage } from "@/app/utils/calculate";
 
 type Props = {
   reviews: Review[];
+  starSize?: string;
   rating?: number;
 };
 
-function Stars({ reviews, rating }: Props) {
+function Stars({ reviews, starSize = "18px", rating }: Props) {
   const reviewRating =
     rating ?? parseFloat(calculateReviewRatingAverage(reviews).toFixed(1));
 
@@ -16,9 +17,9 @@ function Stars({ reviews, rating }: Props) {
     <Rating
       value={reviewRating}
       precision={0.5}
-      sx={{ fontSize: "18px" }}
+      sx={{ fontSize: starSize }}
       size={"small"}
-      emptyIcon={<StarIcon sx={{ fontSize: "18px" }} />}
+      emptyIcon={<StarIcon sx={{ fontSize: starSize }} />}
       readOnly
     />
   );

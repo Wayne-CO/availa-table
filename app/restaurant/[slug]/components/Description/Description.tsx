@@ -9,13 +9,11 @@ type Props = {
 
 export default function Description({ description, reviews }: Props) {
   return (
-    <Box>
-      <Box px="64px">
-        <Box pb={1}>
-          <Rating reviews={reviews} />
-        </Box>
-        <Typography color="text.secondary">{description}</Typography>
+    <Box px="64px" py="16px">
+      <Box pb={1}>
+        <Rating reviews={reviews} />
       </Box>
+      <Typography color="text.secondary">{description}</Typography>
     </Box>
   );
 }

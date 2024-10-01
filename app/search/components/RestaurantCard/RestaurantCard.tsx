@@ -43,6 +43,7 @@ export default function RestaurantCard({ restaurant }: Props) {
               overflow="hidden"
               whiteSpace="nowrap"
               mb="2px"
+              lineHeight="32px"
             >
               {name}
             </Typography>

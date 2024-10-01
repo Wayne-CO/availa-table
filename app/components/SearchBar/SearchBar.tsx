@@ -35,7 +35,14 @@ export default function SearchBar() {
       <Box pt="16px">
         <Button
           variant="contained"
-          sx={{ width: "192px", background: "#2196F3" }}
+          sx={{
+            width: "192px",
+            background: "#2196F3",
+            py: 1,
+            fontSize: "15px",
+            lineHeight: "26px",
+            letterSpacing: ".46px",
+          }}
           onClick={() => {
             if (location === "") return;
 
