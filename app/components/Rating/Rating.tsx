@@ -9,7 +9,7 @@ type Props = {
 
 export default function Rating({ reviews }: Props) {
   return (
-    <Box display="flex" alignItems="end" pb="2px">
+    <Box display="flex" alignItems="end">
       <Box>
         <Typography pr="5px" variant="subtitle2">
           {calculateReviewRatingAverage(reviews).toFixed(1)}
