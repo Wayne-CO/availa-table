@@ -10,7 +10,7 @@ type Props = {
 export default function Description({ description, reviews }: Props) {
   return (
     <Box px="64px" py="16px">
-      <Box pb={1}>
+      <Box pb={0.5}>
         <Rating reviews={reviews} />
       </Box>
       <Typography color="text.secondary">{description}</Typography>
