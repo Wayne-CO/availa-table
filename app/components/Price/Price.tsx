@@ -25,6 +25,7 @@ export default function Price(props: Props) {
             component="span"
             color="text.secondary"
             fontSize={theme.typography.pxToRem(14)}
+            lineHeight="20px"
           >
             $
           </Typography>,
@@ -32,7 +33,7 @@ export default function Price(props: Props) {
       }
     }
 
-    return <Box>{total}</Box>;
+    return <Box display="inline-flex">{total}</Box>;
   };
 
   return <>{renderPrice()}</>;

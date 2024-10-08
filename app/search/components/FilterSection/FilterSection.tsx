@@ -15,7 +15,7 @@ type Props = {
   title: string;
   filters: Location[] | Cuisine[] | PriceFilter;
   searchParams: { city?: string; cuisine?: string; price?: string };
-  value: number;
+  value: number | boolean;
   searchQuery: "city" | "cuisine" | "price";
   handleValueChange: (event: React.SyntheticEvent, cityIndex: number) => void;
 };
@@ -30,9 +30,7 @@ export default function FilterSection({
 }: Props) {
   return (
     <Box>
-      <Box p="0 30px 16px 30px">
-        <TitleSection title={title} />
-      </Box>
+      <TitleSection title={title} />
       <Tabs
         orientation="vertical"
         value={value}

@@ -4,6 +4,7 @@ import TitleSection from "@/app/components/TitleSection";
 import { RestaurantDetails } from "../../page";
 import Description from "../Description";
 import PhotoList from "../PhotoList";
+import Reviews from "../Reviews";
 
 type Props = {
   restaurant: RestaurantDetails;
@@ -15,15 +16,18 @@ export default function Details({ restaurant }: Props) {
       <Box>
         <TitleSection title="restaurant details" />
       </Box>
-      <Grid container pb="62px">
+      <Grid container pb="30px">
         <Grid xs={12}>
-          <Description description={restaurant.description} />
+          <Description
+            description={restaurant.description}
+            reviews={restaurant.reviews}
+          />
         </Grid>
       </Grid>
 
       <TitleSection title="photos" />
-      <Grid container sx={{ px: 8 }}>
-        <Grid xs={12}>
+      <Grid container sx={{ px: 8, pb: "62px" }}>
+        <Grid xs={12} py="16px">
           <PhotoList
             photos={restaurant.images}
             photoWidth={226}
@@ -38,6 +42,8 @@ export default function Details({ restaurant }: Props) {
           />
         </Grid>
       </Grid>
+
+      <Reviews reviews={restaurant.reviews} />
     </>
   );
 }

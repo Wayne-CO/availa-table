@@ -34,7 +34,7 @@ export default function Header() {
           variant="h1"
           fontSize="60px"
           color="#FFFFFF"
-          fontWeight="200"
+          fontWeight="100"
           pt="36px"
           textAlign="center"
         >
