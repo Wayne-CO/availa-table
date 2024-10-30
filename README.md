@@ -9,3 +9,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 Stop Supbase services:
 
 `npx supabase stop`
+
+## Prisma
+
+Prisma is used as the ORM to work with the Supabase Postgres DB.
+
+### Migrations
+
+Any schema model changes are done through migrations.
