@@ -82,5 +82,19 @@ export async function GET(
 
   const tables = restaurant.Table;
 
-  return Response.json({ searchTimes, bookings, bookingTablesObj, tables });
+  const searchTimesWithTables = searchTimes.map((searchTime) => {
+    return {
+      date: new Date(`${day}T${searchTime}`),
+      time: searchTime,
+      tables,
+    };
+  });
+
+  return Response.json({
+    searchTimes,
+    bookings,
+    bookingTablesObj,
+    tables,
+    searchTimesWithTables,
+  });
 }
