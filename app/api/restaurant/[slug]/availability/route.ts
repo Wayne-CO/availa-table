@@ -4,12 +4,13 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET(
   req: NextRequest,
-  // { params }: { params: { slug: string } },
+  { params }: { params: { slug: string } },
 ) {
   const searchParams = req.nextUrl.searchParams;
   const day = searchParams.get("day");
   const time = searchParams.get("time");
   const partySize = searchParams.get("partySize");
+  const slug = params.slug;
 
   if (!day || !time || !partySize) {
     return Response.json(
@@ -61,5 +62,25 @@ export async function GET(
     );
   });
 
-  return Response.json({ searchTimes, bookings, bookingTablesObj });
+  const restaurant = await prisma.restaurant.findUnique({
+    where: {
+      slug,
+    },
+    select: {
+      Table: true,
+    },
+  });
+
+  if (!restaurant) {
+    return Response.json(
+      {
+        errorMessage: "No restaurant found",
+      },
+      { status: 400 },
+    );
+  }
+
+  const tables = restaurant.Table;
+
+  return Response.json({ searchTimes, bookings, bookingTablesObj, tables });
 }
