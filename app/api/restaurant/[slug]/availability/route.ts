@@ -101,11 +101,18 @@ export async function GET(
     });
   });
 
+  const availabilities = searchTimesWithTables.map((t) => {
+    const sumSeats = t.tables.reduce((sum, table) => {
+      return sum + table.seats;
+    }, 0);
+
+    return {
+      time: t.time,
+      available: sumSeats >= parseInt(partySize),
+    };
+  });
+
   return Response.json({
-    searchTimes,
-    bookings,
-    bookingTablesObj,
-    tables,
-    searchTimesWithTables,
+    availabilities,
   });
 }
