@@ -90,6 +90,17 @@ export async function GET(
     };
   });
 
+  // Filters out booked tables
+  searchTimesWithTables.forEach((t) => {
+    t.tables = t.tables.filter((table) => {
+      if (bookingTablesObj[t.date.toISOString()]) {
+        if (bookingTablesObj[t.date.toISOString()][table.id]) return false;
+      }
+
+      return true;
+    });
+  });
+
   return Response.json({
     searchTimes,
     bookings,
