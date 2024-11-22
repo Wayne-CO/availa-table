@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { times } from "@/app/data";
+import { prisma } from "@/lib/prisma";
 
 export async function GET(
   req: NextRequest,
@@ -32,5 +33,19 @@ export async function GET(
     );
   }
 
-  return Response.json({ searchTimes });
+  const bookings = await prisma.booking.findMany({
+    where: {
+      bookingTime: {
+        gte: new Date(`${day}T${searchTimes[0]}`),
+        lte: new Date(`${day}T${searchTimes[searchTimes.length - 1]}`),
+      },
+    },
+    select: {
+      numberOfPeople: true,
+      bookingTime: true,
+      tables: true,
+    },
+  });
+
+  return Response.json({ searchTimes, bookings });
 }
