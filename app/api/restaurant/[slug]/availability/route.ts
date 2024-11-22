@@ -47,5 +47,19 @@ export async function GET(
     },
   });
 
-  return Response.json({ searchTimes, bookings });
+  const bookingTablesObj: { [key: string]: { [key: number]: true } } = {};
+
+  bookings.forEach((booking) => {
+    bookingTablesObj[booking.bookingTime.toISOString()] = booking.tables.reduce(
+      (obj, table) => {
+        return {
+          ...obj,
+          [table.tableId]: true,
+        };
+      },
+      {},
+    );
+  });
+
+  return Response.json({ searchTimes, bookings, bookingTablesObj });
 }
