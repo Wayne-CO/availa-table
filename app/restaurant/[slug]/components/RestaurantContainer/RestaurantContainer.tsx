@@ -1,9 +1,11 @@
 "use client";
 import { Box, Paper } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { useState } from "react";
 import { RestaurantDetails } from "../../page";
 import Details from "../Details";
 import Menu from "../Menu";
+import ReservationCard from "../ReservationCard";
 import RestaurantNavBar from "../RestaurantNavBar";
 
 type Props = {
@@ -19,35 +21,47 @@ export default function RestaurantContainer({ restaurant }: Props) {
   };
 
   return (
-    <Paper sx={{ width: 816, padding: "10px 0 46px 0", mt: 8 }}>
-      <Box pb={5.75}>
-        <RestaurantNavBar
-          tabs={tabs}
-          value={tabValue}
-          handleTabChange={handleTabChange}
-          tabsProps={{
-            centered: true,
-            sx: {
-              "& .MuiTab-root.Mui-selected": {
-                color: "#2196F3",
-              },
-              "& .MuiTabs-indicator": {
-                backgroundColor: "#2196F3",
-              },
-            },
-          }}
-          tabProps={{
-            sx: {
-              width: 250,
-              letterSpacing: "0.02857em",
-              pb: "9px",
-            },
-          }}
-        />
-      </Box>
-      {tabValue === 0 && <Details restaurant={restaurant} />}
+    <Grid container spacing={2} mt={8}>
+      <Grid xs={8}>
+        <Paper sx={{ padding: "10px 0 46px 0" }}>
+          <Box pb={5.75}>
+            <RestaurantNavBar
+              tabs={tabs}
+              value={tabValue}
+              handleTabChange={handleTabChange}
+              tabsProps={{
+                centered: true,
+                sx: {
+                  "& .MuiTab-root.Mui-selected": {
+                    color: "#2196F3",
+                  },
+                  "& .MuiTabs-indicator": {
+                    backgroundColor: "#2196F3",
+                  },
+                },
+              }}
+              tabProps={{
+                sx: {
+                  width: 250,
+                  letterSpacing: "0.02857em",
+                  pb: "9px",
+                },
+              }}
+            />
+          </Box>
+          {tabValue === 0 && <Details restaurant={restaurant} />}
 
-      {tabValue === 1 && <Menu restaurant={restaurant} />}
-    </Paper>
+          {tabValue === 1 && <Menu restaurant={restaurant} />}
+        </Paper>
+      </Grid>
+
+      <Grid xs={4}>
+        <ReservationCard
+          openTime={restaurant.openTime}
+          closeTime={restaurant.closeTime}
+          slug={restaurant.slug}
+        />
+      </Grid>
+    </Grid>
   );
 }
