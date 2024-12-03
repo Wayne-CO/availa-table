@@ -12,6 +12,9 @@ import {
   useTheme,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useState } from "react";
 import TitleSection from "@/app/components/TitleSection";
 import { partySizes, times } from "@/app/data";
@@ -43,6 +46,7 @@ export default function ReservationCard({
   const [activeStep, setActiveStep] = useState(1);
   const [partySize, setPartySize] = useState("2");
   const [time, setTime] = useState(openTime);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   const filterTimeByRestaurantOpenWindow = () => {
     const timesWithinWindow: typeof times = [];
@@ -141,6 +145,18 @@ export default function ReservationCard({
               )}
             </Select>
           </FormControl>
+        </Grid>
+
+        <Grid size={12}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <FormControl fullWidth>
+              <DatePicker
+                label="Date"
+                value={selectedDate}
+                onChange={(newValue) => setSelectedDate(newValue)}
+              />
+            </FormControl>
+          </LocalizationProvider>
         </Grid>
       </Grid>
     </Paper>
