@@ -1,6 +1,5 @@
 "use client";
-import { Box, Paper } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { Box, Grid2 as Grid, Paper } from "@mui/material";
 import { useState } from "react";
 import { RestaurantDetails } from "../../page";
 import Details from "../Details";
@@ -22,7 +21,7 @@ export default function RestaurantContainer({ restaurant }: Props) {
 
   return (
     <Grid container spacing={2} mt={8}>
-      <Grid xs={8}>
+      <Grid size={8}>
         <Paper sx={{ padding: "10px 0 46px 0" }}>
           <Box pb={5.75}>
             <RestaurantNavBar
@@ -55,7 +54,7 @@ export default function RestaurantContainer({ restaurant }: Props) {
         </Paper>
       </Grid>
 
-      <Grid xs={4}>
+      <Grid size={4}>
         <ReservationCard
           openTime={restaurant.openTime}
           closeTime={restaurant.closeTime}

@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import Grid from "@mui/material/Grid2";
 import TitleSection from "@/app/components/TitleSection";
 import { RestaurantDetails } from "../../page";
 import Description from "../Description";
@@ -17,7 +17,7 @@ export default function Details({ restaurant }: Props) {
         <TitleSection title="restaurant details" />
       </Box>
       <Grid container pb="30px">
-        <Grid xs={12}>
+        <Grid size={12}>
           <Description
             description={restaurant.description}
             reviews={restaurant.reviews}
@@ -27,7 +27,7 @@ export default function Details({ restaurant }: Props) {
 
       <TitleSection title="photos" />
       <Grid container sx={{ px: 8, pb: "62px" }}>
-        <Grid xs={12} py="16px">
+        <Grid size={12} py="16px">
           <PhotoList
             photos={restaurant.images}
             photoWidth={226}

@@ -11,7 +11,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import Grid from "@mui/material/Grid2";
 import { useState } from "react";
 import TitleSection from "@/app/components/TitleSection";
 import { partySizes, times } from "@/app/data";
@@ -100,7 +100,7 @@ export default function ReservationCard({
 
       <TitleSection title="Booking Details" />
       <Grid container p="16px 40px" rowSpacing="24px" columnSpacing="16px">
-        <Grid xs={6}>
+        <Grid size={6}>
           <FormControl fullWidth>
             <InputLabel id="booking-party-size">Party Size</InputLabel>
             <Select
@@ -120,7 +120,7 @@ export default function ReservationCard({
             </Select>
           </FormControl>
         </Grid>
-        <Grid xs={6}>
+        <Grid size={6}>
           <FormControl fullWidth>
             <InputLabel id="booking-time">Time</InputLabel>
             <Select
