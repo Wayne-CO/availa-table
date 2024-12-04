@@ -1,5 +1,4 @@
 import {
-  Box,
   FormControl,
   InputLabel,
   MenuItem,
@@ -18,6 +17,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useState } from "react";
 import TitleSection from "@/app/components/TitleSection";
 import { partySizes, times } from "@/app/data";
+import { useAvailabilityQuery } from "@/lib/availability";
 
 const steps = ["Choose", "Book", "Confirm"];
 
@@ -47,6 +47,13 @@ export default function ReservationCard({
   const [partySize, setPartySize] = useState("2");
   const [time, setTime] = useState(openTime);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const [day, setDay] = useState(new Date().toISOString().split("T")[0]);
+  const { availabilityQuery } = useAvailabilityQuery({
+    day,
+    partySize,
+    slug,
+    time,
+  });
 
   const filterTimeByRestaurantOpenWindow = () => {
     const timesWithinWindow: typeof times = [];
@@ -68,6 +75,17 @@ export default function ReservationCard({
     });
 
     return timesWithinWindow;
+  };
+
+  const handleDateChange = (date: Date | null) => {
+    if (date) {
+      const day = date.toISOString().split("T")[0];
+      setDay(day);
+
+      return setSelectedDate(date);
+    }
+
+    return setSelectedDate(null);
   };
 
   return (
@@ -153,7 +171,7 @@ export default function ReservationCard({
               <DatePicker
                 label="Date"
                 value={selectedDate}
-                onChange={(newValue) => setSelectedDate(newValue)}
+                onChange={handleDateChange}
               />
             </FormControl>
           </LocalizationProvider>
