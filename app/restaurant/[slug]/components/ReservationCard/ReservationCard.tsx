@@ -1,4 +1,6 @@
 import {
+  Button,
+  ButtonProps,
   FormControl,
   InputLabel,
   MenuItem,
@@ -7,6 +9,7 @@ import {
   Step,
   StepLabel,
   Stepper,
+  SxProps,
   Typography,
   useTheme,
 } from "@mui/material";
@@ -14,6 +17,7 @@ import Grid from "@mui/material/Grid2";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import Link from "next/link";
 import { useState } from "react";
 import TitleSection from "@/app/components/TitleSection";
 import { partySizes, times } from "@/app/data";
@@ -176,6 +180,47 @@ export default function ReservationCard({
             </FormControl>
           </LocalizationProvider>
         </Grid>
+      </Grid>
+      <Grid container p="30px 40px" rowSpacing="24px" columnSpacing="16px">
+        {availabilityQuery.data &&
+          availabilityQuery.data.map(({ time, available }) => {
+            const buttonSharedProps: ButtonProps = {
+              LinkComponent: Link,
+              color: "error",
+              variant: "contained",
+              fullWidth: true,
+            };
+
+            const buttonSharedSx: SxProps = {
+              fontSize: "15px",
+              lineHeight: "26px",
+              p: "8px 16px",
+            };
+
+            return (
+              <Grid key={time} size={6}>
+                {available ? (
+                  <Button
+                    {...buttonSharedProps}
+                    sx={buttonSharedSx}
+                    color="error"
+                    href={`/reserve/${slug}?date=${day}T${time}&partySize=${partySize}`}
+                  >
+                    {time}
+                  </Button>
+                ) : (
+                  <Button
+                    {...buttonSharedProps}
+                    sx={buttonSharedSx}
+                    color="warning"
+                    disabled
+                  >
+                    {time}
+                  </Button>
+                )}
+              </Grid>
+            );
+          })}
       </Grid>
     </Paper>
   );
