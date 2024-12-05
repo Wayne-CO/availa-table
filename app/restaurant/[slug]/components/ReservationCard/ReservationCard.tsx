@@ -1,6 +1,7 @@
 import {
   Button,
   ButtonProps,
+  CircularProgress,
   FormControl,
   InputLabel,
   MenuItem,
@@ -221,6 +222,18 @@ export default function ReservationCard({
               </Grid>
             );
           })}
+
+        {availabilityQuery.isLoading && (
+          <Grid size={12} textAlign="center">
+            <CircularProgress />
+          </Grid>
+        )}
+
+        {availabilityQuery.error && (
+          <Grid size={12}>
+            <Typography>Error in retrieving availability</Typography>
+          </Grid>
+        )}
       </Grid>
     </Paper>
   );
