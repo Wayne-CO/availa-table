@@ -18,6 +18,7 @@ import Grid from "@mui/material/Grid2";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { format } from "date-fns";
 import Link from "next/link";
 import { useState } from "react";
 import TitleSection from "@/app/components/TitleSection";
@@ -198,6 +199,11 @@ export default function ReservationCard({
               p: "8px 16px",
             };
 
+            const localTime = format(
+              new Date(`${day} ${time.slice(0, time.length - 1)}`),
+              "p",
+            );
+
             return (
               <Grid key={time} size={6}>
                 {available ? (
@@ -207,7 +213,7 @@ export default function ReservationCard({
                     color="error"
                     href={`/reserve/${slug}?date=${day}T${time}&partySize=${partySize}`}
                   >
-                    {time}
+                    {localTime}
                   </Button>
                 ) : (
                   <Button
@@ -216,7 +222,7 @@ export default function ReservationCard({
                     color="warning"
                     disabled
                   >
-                    {time}
+                    {localTime}
                   </Button>
                 )}
               </Grid>
