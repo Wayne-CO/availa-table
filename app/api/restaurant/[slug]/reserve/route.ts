@@ -84,5 +84,18 @@ export async function POST(
     );
   }
 
-  return Response.json({ searchTimeWithTables });
+  const tablesCount: { 2: number[]; 4: number[] } = {
+    2: [],
+    4: [],
+  };
+
+  searchTimeWithTables.tables.forEach((table) => {
+    if (table.seats === 2) {
+      tablesCount[2].push(table.id);
+    } else {
+      tablesCount[4].push(table.id);
+    }
+  });
+
+  return Response.json({ tablesCount });
 }
