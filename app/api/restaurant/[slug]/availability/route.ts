@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { times } from "@/app/data";
+import { findAvailableTables } from "@/app/services/restaurant/findAvailableTables";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(
@@ -21,47 +21,6 @@ export async function GET(
     );
   }
 
-  const searchTimes = times.find((t) => {
-    return t.time === time;
-  })?.searchTimes;
-
-  if (!searchTimes) {
-    return Response.json(
-      {
-        errorMessage: "Invalid search time provided",
-      },
-      { status: 400 },
-    );
-  }
-
-  const bookings = await prisma.booking.findMany({
-    where: {
-      bookingTime: {
-        gte: new Date(`${day}T${searchTimes[0]}`),
-        lte: new Date(`${day}T${searchTimes[searchTimes.length - 1]}`),
-      },
-    },
-    select: {
-      numberOfPeople: true,
-      bookingTime: true,
-      tables: true,
-    },
-  });
-
-  const bookingTablesObj: { [key: string]: { [key: number]: true } } = {};
-
-  bookings.forEach((booking) => {
-    bookingTablesObj[booking.bookingTime.toISOString()] = booking.tables.reduce(
-      (obj, table) => {
-        return {
-          ...obj,
-          [table.tableId]: true,
-        };
-      },
-      {},
-    );
-  });
-
   const restaurant = await prisma.restaurant.findUnique({
     where: {
       slug,
@@ -82,49 +41,45 @@ export async function GET(
     );
   }
 
-  const tables = restaurant.Table;
-
-  const searchTimesWithTables = searchTimes.map((searchTime) => {
-    return {
-      date: new Date(`${day}T${searchTime}`),
-      time: searchTime,
-      tables,
-    };
+  const searchTimesWithTables = await findAvailableTables({
+    day,
+    time,
+    restaurant,
   });
 
-  // Filters out booked tables
-  searchTimesWithTables.forEach((t) => {
-    t.tables = t.tables.filter((table) => {
-      if (bookingTablesObj[t.date.toISOString()]) {
-        if (bookingTablesObj[t.date.toISOString()][table.id]) return false;
-      }
+  if (!searchTimesWithTables) {
+    return Response.json(
+      {
+        errorMessage: "Invalid search times provided",
+      },
+      { status: 400 },
+    );
+  }
 
-      return true;
-    });
-  });
+  const availabilities =
+    Array.isArray(searchTimesWithTables) &&
+    searchTimesWithTables
+      .map((t) => {
+        const sumSeats = t.tables.reduce((sum, table) => {
+          return sum + table.seats;
+        }, 0);
 
-  const availabilities = searchTimesWithTables
-    .map((t) => {
-      const sumSeats = t.tables.reduce((sum, table) => {
-        return sum + table.seats;
-      }, 0);
+        return {
+          time: t.time,
+          available: sumSeats >= parseInt(partySize),
+        };
+      })
+      .filter((availability) => {
+        const timeIsAfterOpeningHour =
+          new Date(`${day}T${availability.time}`) >=
+          new Date(`${day}T${restaurant.openTime}`);
 
-      return {
-        time: t.time,
-        available: sumSeats >= parseInt(partySize),
-      };
-    })
-    .filter((availability) => {
-      const timeIsAfterOpeningHour =
-        new Date(`${day}T${availability.time}`) >=
-        new Date(`${day}T${restaurant.openTime}`);
+        const timeIsBeforeClosingHour =
+          new Date(`${day}T${availability.time}`) <=
+          new Date(`${day}T${restaurant.closeTime}`);
 
-      const timeIsBeforeClosingHour =
-        new Date(`${day}T${availability.time}`) <=
-        new Date(`${day}T${restaurant.closeTime}`);
-
-      return timeIsAfterOpeningHour && timeIsBeforeClosingHour;
-    });
+        return timeIsAfterOpeningHour && timeIsBeforeClosingHour;
+      });
 
   return Response.json(availabilities);
 }
