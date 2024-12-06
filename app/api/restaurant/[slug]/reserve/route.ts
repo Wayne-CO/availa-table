@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { findAvailableTables } from "@/app/services/restaurant/findAvailableTables";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(
@@ -11,9 +12,23 @@ export async function POST(
   const partySize = searchParams.get("partySize");
   const slug = params.slug;
 
+  if (!day || !time || !partySize) {
+    return Response.json(
+      {
+        errorMessage: "Invalid data provided",
+      },
+      { status: 400 },
+    );
+  }
+
   const restaurant = await prisma.restaurant.findUnique({
     where: {
       slug,
+    },
+    select: {
+      Table: true,
+      openTime: true,
+      closeTime: true,
     },
   });
 
@@ -38,5 +53,36 @@ export async function POST(
     );
   }
 
-  return Response.json({ slug, day, time, partySize });
+  const searchTimesWithTables = await findAvailableTables({
+    day,
+    time,
+    restaurant,
+  });
+
+  if (!searchTimesWithTables) {
+    return Response.json(
+      {
+        errorMessage: "Invalid search times provided",
+      },
+      { status: 400 },
+    );
+  }
+
+  const searchTimeWithTables =
+    Array.isArray(searchTimesWithTables) &&
+    searchTimesWithTables.find((t) => {
+      // uses iso strings because comparing Date objects will always be false
+      return t.date.toISOString() === new Date(`${day}T${time}`).toISOString();
+    });
+
+  if (!searchTimeWithTables) {
+    return Response.json(
+      {
+        errorMessage: "No availability, cannot book",
+      },
+      { status: 400 },
+    );
+  }
+
+  return Response.json({ searchTimeWithTables });
 }
