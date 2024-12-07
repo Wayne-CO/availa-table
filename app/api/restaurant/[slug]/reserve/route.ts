@@ -1,13 +1,17 @@
-import { NextApiRequest } from "next";
+import { NextRequest } from "next/server";
 import { findAvailableTables } from "@/app/services/restaurant/findAvailableTables";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(
-  req: NextApiRequest,
+  req: NextRequest,
   { params }: { params: { slug: string } },
 ) {
   const slug = params.slug;
-  const { day, time, partySize } = req.query;
+  const searchParams = req.nextUrl.searchParams;
+  const day = searchParams.get("day");
+  const time = searchParams.get("time");
+  const partySize = searchParams.get("partySize");
+
   const {
     bookerEmail,
     bookerPhone,
@@ -15,7 +19,7 @@ export async function POST(
     bookerLastName,
     bookerOccasion,
     bookerRequest,
-  } = req.body;
+  } = await req.json();
 
   if (
     !day ||
@@ -165,5 +169,5 @@ export async function POST(
     data: bookingsOnTablesData,
   });
 
-  return Response.json({ tablesCount, tablesToBooks });
+  return Response.json({ booking });
 }
