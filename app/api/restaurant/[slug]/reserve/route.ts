@@ -1,18 +1,30 @@
-import { NextRequest } from "next/server";
+import { NextApiRequest } from "next";
 import { findAvailableTables } from "@/app/services/restaurant/findAvailableTables";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(
-  req: NextRequest,
+  req: NextApiRequest,
   { params }: { params: { slug: string } },
 ) {
-  const searchParams = req.nextUrl.searchParams;
-  const day = searchParams.get("day");
-  const time = searchParams.get("time");
-  const partySize = searchParams.get("partySize");
   const slug = params.slug;
+  const { day, time, partySize } = req.query;
+  const {
+    bookerEmail,
+    bookerPhone,
+    bookerFirstName,
+    bookerLastName,
+    bookerOccasion,
+    bookerRequest,
+  } = req.body;
 
-  if (!day || !time || !partySize) {
+  if (
+    !day ||
+    !time ||
+    !partySize ||
+    Array.isArray(day) ||
+    Array.isArray(time) ||
+    Array.isArray(partySize)
+  ) {
     return Response.json(
       {
         errorMessage: "Invalid data provided",
@@ -29,6 +41,7 @@ export async function POST(
       Table: true,
       openTime: true,
       closeTime: true,
+      id: true,
     },
   });
 
@@ -126,6 +139,31 @@ export async function POST(
       }
     }
   }
+
+  const booking = await prisma.booking.create({
+    data: {
+      numberOfPeople: parseInt(partySize),
+      bookingTime: new Date(`${day}T${time}`),
+      bookerEmail: bookerEmail,
+      bookerPhone: bookerPhone,
+      bookerFirstName: bookerFirstName,
+      bookerLastName: bookerLastName,
+      bookerOccasion: bookerOccasion,
+      bookerRequest: bookerRequest,
+      restaurantId: restaurant.id,
+    },
+  });
+
+  const bookingsOnTablesData = tablesToBooks.map((tableId) => {
+    return {
+      tableId,
+      bookingId: booking.id,
+    };
+  });
+
+  await prisma.bookingsOnTables.createMany({
+    data: bookingsOnTablesData,
+  });
 
   return Response.json({ tablesCount, tablesToBooks });
 }
