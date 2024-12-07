@@ -7,9 +7,6 @@ import {
   MenuItem,
   Paper,
   Select,
-  Step,
-  StepLabel,
-  Stepper,
   SxProps,
   Typography,
   useTheme,
@@ -21,6 +18,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { format } from "date-fns";
 import Link from "next/link";
 import { useState } from "react";
+import ReservationStepper from "@/app/components/ReservationStepper";
 import TitleSection from "@/app/components/TitleSection";
 import { partySizes, times } from "@/app/data";
 import { useAvailabilityQuery } from "@/lib/availability";
@@ -49,7 +47,6 @@ export default function ReservationCard({
   slug: string;
 }) {
   const theme = useTheme();
-  const [activeStep, setActiveStep] = useState(1);
   const [partySize, setPartySize] = useState("2");
   const [time, setTime] = useState(openTime);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
@@ -105,10 +102,12 @@ export default function ReservationCard({
       >
         Make a Reservation
       </Typography>
-      <Stepper
-        activeStep={activeStep}
-        alternativeLabel
-        sx={{
+
+      <ReservationStepper
+        steps={steps}
+        activeStep={1}
+        optionalLabels={optionalLabels}
+        sxStepper={{
           "& .MuiStepConnector-root": {
             top: "41px",
             width: "32px",
@@ -116,15 +115,7 @@ export default function ReservationCard({
           },
           pb: theme.typography.pxToRem(30),
         }}
-      >
-        {steps.map((label, index) => {
-          return (
-            <Step key={label}>
-              <StepLabel optional={optionalLabels[index]}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
+      />
 
       <TitleSection title="Booking Details" />
       <Grid container p="16px 40px" rowSpacing="24px" columnSpacing="16px">
