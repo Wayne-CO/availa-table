@@ -20,22 +20,8 @@ import Link from "next/link";
 import { useState } from "react";
 import ReservationStepper from "@/app/components/ReservationStepper";
 import TitleSection from "@/app/components/TitleSection";
-import { partySizes, times } from "@/app/data";
+import { partySizes, steps, times } from "@/app/data";
 import { useAvailabilityQuery } from "@/lib/availability";
-
-const steps = ["Choose", "Book", "Confirm"];
-
-const optionalLabels = [
-  <Typography key={0} variant="caption" color="text.primary">
-    Restaurant
-  </Typography>,
-  <Typography key={1} variant="caption" color="text.primary">
-    Date and Time
-  </Typography>,
-  <Typography key={2} variant="caption" color="text.primary">
-    Reservation
-  </Typography>,
-];
 
 export default function ReservationCard({
   openTime,
@@ -106,7 +92,6 @@ export default function ReservationCard({
       <ReservationStepper
         steps={steps}
         activeStep={1}
-        optionalLabels={optionalLabels}
         sxStepper={{
           "& .MuiStepConnector-root": {
             top: "41px",

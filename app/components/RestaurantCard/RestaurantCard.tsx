@@ -1,6 +1,6 @@
 "use client";
 
-import { CardActionArea, useTheme } from "@mui/material";
+import { CardActionArea, SxProps, useTheme } from "@mui/material";
 import Card from "@mui/material/Card";
 
 import CardContent from "@mui/material/CardContent";
@@ -13,23 +13,26 @@ import RatingReview from "../RatingReview/RatingReview";
 
 type Props = {
   restaurant: RestaurantCardData;
+  sxCard: SxProps;
+  sxCardMedia: SxProps;
+  sxCardContent: SxProps;
 };
 
-export default function RestaurantCard({ restaurant }: Props) {
+export default function RestaurantCard({
+  restaurant,
+  sxCard,
+  sxCardMedia,
+  sxCardContent,
+}: Props) {
   const theme = useTheme();
   const { mainImage, name, cuisine, location, price, slug, reviews } =
     restaurant;
 
   return (
-    <Card sx={{ width: 296 }}>
+    <Card sx={sxCard}>
       <CardActionArea LinkComponent={Link} href={`/restaurant/${slug}`}>
-        <CardMedia sx={{ height: "127px" }} image={mainImage} />
-        <CardContent
-          sx={{
-            minHeight: "130px",
-            pb: "16px",
-          }}
-        >
+        <CardMedia sx={sxCardMedia} image={mainImage} />
+        <CardContent sx={sxCardContent}>
           <Typography
             gutterBottom
             variant="h3"

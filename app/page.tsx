@@ -45,7 +45,15 @@ export default async function Home() {
         <Grid container spacing={2}>
           {restaurants.map((restaurant) => (
             <Grid key={restaurant.id}>
-              <RestaurantCard restaurant={restaurant} />
+              <RestaurantCard
+                restaurant={restaurant}
+                sxCard={{ width: 296 }}
+                sxCardMedia={{ height: "127px" }}
+                sxCardContent={{
+                  minHeight: "130px",
+                  pb: "16px",
+                }}
+              />
             </Grid>
           ))}
         </Grid>
