@@ -1,25 +1,40 @@
-import { Step, StepLabel, Stepper, StepperProps, SxProps } from "@mui/material";
-import { ReactNode } from "react";
+import {
+  Step,
+  StepLabel,
+  Stepper,
+  StepperProps,
+  SxProps,
+  Typography,
+} from "@mui/material";
 
 type Props = {
-  steps: string[];
+  steps: {
+    label: string;
+    optional: string;
+  }[];
   activeStep: number;
-  optionalLabels: ReactNode[];
-  sxStepper: StepperProps & SxProps;
+  sxStepper?: StepperProps & SxProps;
 };
 
 export default function ReservationStepper({
   steps,
   activeStep,
-  optionalLabels,
   sxStepper,
 }: Props) {
   return (
     <Stepper activeStep={activeStep} alternativeLabel sx={sxStepper}>
-      {steps.map((label, index) => {
+      {steps.map(({ label, optional }) => {
         return (
           <Step key={label}>
-            <StepLabel optional={optionalLabels[index]}>{label}</StepLabel>
+            <StepLabel
+              optional={
+                <Typography variant="caption" color="text.primary">
+                  {optional}
+                </Typography>
+              }
+            >
+              {label}
+            </StepLabel>
           </Step>
         );
       })}
