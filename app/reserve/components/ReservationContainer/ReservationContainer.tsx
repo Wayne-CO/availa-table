@@ -6,6 +6,7 @@ import RestaurantCard from "@/app/components/RestaurantCard";
 import TitleSection from "@/app/components/TitleSection";
 import { steps } from "@/app/data";
 import { RestaurantCardData } from "@/app/page";
+import BookingSelection from "../BookingSelection";
 
 export default function ReservationContainer({
   restaurant,
@@ -13,6 +14,7 @@ export default function ReservationContainer({
   restaurant: RestaurantCardData;
 }) {
   const theme = useTheme();
+  // const {} = restaurant
 
   return (
     <Paper>
@@ -33,7 +35,7 @@ export default function ReservationContainer({
         </Grid>
       </Grid>
       <TitleSection title="Booking Information" />
-      <Grid container px="64px" columnSpacing="30px">
+      <Grid container px="64px" pb="47px" columnSpacing="30px">
         <Grid size={6}>
           <RestaurantCard
             restaurant={restaurant}
@@ -42,11 +44,26 @@ export default function ReservationContainer({
             sxCardContent={{
               minHeight: "130px",
               pb: "16px",
+              "&:last-child": {
+                pb: "16px",
+              },
             }}
           />
         </Grid>
 
-        <Grid size={6}>hello</Grid>
+        <Grid size={6}>
+          <Grid container rowSpacing="30px" columnSpacing="30px">
+            <Grid size={12}>
+              <BookingSelection label="DATE SELECTED" value="date" />
+            </Grid>
+            <Grid size={6}>
+              <BookingSelection label="TIME SELECTED" value="Time" />
+            </Grid>
+            <Grid size={6}>
+              <BookingSelection label="GUEST COUNT" value="10" />
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
     </Paper>
   );

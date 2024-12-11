@@ -53,6 +53,7 @@ export default async function Home() {
                   minHeight: "130px",
                   pb: "16px",
                 }}
+                isClickable
               />
             </Grid>
           ))}
