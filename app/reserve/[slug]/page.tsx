@@ -31,14 +31,21 @@ const fetchRestaurantBySlug = async (slug: string) => {
 };
 export default async function Reserve({
   params,
+  searchParams,
 }: {
   params: { slug: string };
+  searchParams: { date: string; partySize: string };
 }) {
   const restaurant = await fetchRestaurantBySlug(params.slug);
+  const { date, partySize } = searchParams;
 
   return (
     <Box component="main" sx={{ width: "1272px", margin: "auto", px: "20px" }}>
-      <ReservationContainer restaurant={restaurant} />
+      <ReservationContainer
+        restaurant={restaurant}
+        date={date}
+        partySize={partySize}
+      />
     </Box>
   );
 }
