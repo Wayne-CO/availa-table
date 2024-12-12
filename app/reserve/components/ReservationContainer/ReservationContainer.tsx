@@ -21,21 +21,17 @@ export default function ReservationContainer({
   partySize: string;
 }) {
   const theme = useTheme();
-  const { handleSubmit, control, watch } = useForm({
+  const { handleSubmit, control } = useForm({
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      phone: "",
-      email: "",
-      purpose: "",
-      request: "",
+      bookerFirstName: "",
+      bookerLastName: "",
+      bookerPhone: "",
+      bookerEmail: "",
+      bookerOccasion: "",
+      bookerRequest: "",
     },
   });
   const [day, time] = date.split("T");
-
-  const formValues = watch();
-  console.log("values", formValues);
-  console.log("date", date);
 
   return (
     <Paper>
@@ -102,7 +98,7 @@ export default function ReservationContainer({
       <Grid container columnSpacing="16px" rowSpacing="24px" p="0 64px">
         <Grid size={6}>
           <Controller
-            name="firstName"
+            name="bookerFirstName"
             control={control}
             render={({ field }) => (
               <TextField required label="First Name" {...field} fullWidth />
@@ -110,12 +106,62 @@ export default function ReservationContainer({
           />
         </Grid>
         <Grid size={6}>
-          <TextField required label="Last Name" fullWidth />
+          <Controller
+            name="bookerLastName"
+            control={control}
+            render={({ field }) => (
+              <TextField required label="Last Name" {...field} fullWidth />
+            )}
+          />
         </Grid>
-        <Grid size={6}></Grid>
-        <Grid size={6}></Grid>
-        <Grid size={12}></Grid>
-        <Grid size={12}></Grid>
+        <Grid size={6}>
+          <Controller
+            name="bookerPhone"
+            control={control}
+            render={({ field }) => (
+              <TextField required label="Phone Number" {...field} fullWidth />
+            )}
+          />
+        </Grid>
+        <Grid size={6}>
+          <Controller
+            name="bookerEmail"
+            control={control}
+            render={({ field }) => (
+              <TextField required label="Email" {...field} fullWidth />
+            )}
+          />
+        </Grid>
+        <Grid size={12}>
+          <Controller
+            name="bookerOccasion"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                required
+                label="Occasion"
+                {...field}
+                helperText="Birthday, Anniversary, Proposal, Date Night, Business Meal, Celebration..."
+                fullWidth
+              />
+            )}
+          />
+        </Grid>
+        <Grid size={12}>
+          <Controller
+            name="bookerRequest"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                required
+                label="Special Requests"
+                {...field}
+                helperText="Allergies, Accessibility, High Chair, Dietary Restrictions, Pets, Seating Area..."
+                fullWidth
+              />
+            )}
+          />
+        </Grid>
       </Grid>
     </Paper>
   );
