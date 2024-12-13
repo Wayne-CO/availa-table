@@ -1,5 +1,12 @@
 "use client";
-import { Box, Paper, TextField, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Paper,
+  TextField,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { format } from "date-fns";
 import { Controller, useForm } from "react-hook-form";
@@ -95,7 +102,7 @@ export default function ReservationContainer({
       </Grid>
 
       <TitleSection title="Confirmation Details" />
-      <Grid container columnSpacing="16px" rowSpacing="24px" p="0 64px">
+      <Grid container columnSpacing="16px" rowSpacing="24px" p="30px 64px">
         <Grid size={6}>
           <Controller
             name="bookerFirstName"
@@ -161,6 +168,29 @@ export default function ReservationContainer({
               />
             )}
           />
+        </Grid>
+      </Grid>
+
+      <Grid container rowSpacing="30px" pb="50px">
+        <Grid size={12}>
+          <Typography
+            color="text.secondary"
+            fontSize="12px"
+            lineHeight="12px"
+            letterSpacing="0.15px"
+            textAlign="center"
+          >
+            Please verify that all information is accurate before booking. The
+            provided First Name and Last Name will serve as the reservation name
+            for your guests to check-in. <br />
+            By clicking “Confirm Reservation” you agree to AvailaTable’s Terms
+            of Use and Privacy Policy. You may opt out of receiving text
+            messages and emails at any time. Standard text message rates may
+            apply.
+          </Typography>
+        </Grid>
+        <Grid size={12} textAlign="center">
+          <Button variant="contained">CONFIRM RESERVATION</Button>
         </Grid>
       </Grid>
     </Paper>
