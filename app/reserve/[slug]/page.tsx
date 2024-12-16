@@ -42,6 +42,7 @@ export default async function Reserve({
   return (
     <Box component="main" sx={{ width: "1272px", margin: "auto", px: "20px" }}>
       <ReservationContainer
+        slug={params.slug}
         restaurant={restaurant}
         date={date}
         partySize={partySize}

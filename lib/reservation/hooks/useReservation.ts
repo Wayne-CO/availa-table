@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { axiosInstance } from "@/app/utils/axiosInstance";
+import { ReservationRequest } from "..";
 
 async function reservation({
   slug,
@@ -17,13 +18,7 @@ async function reservation({
   day: string;
   time: string;
   partySize: string;
-  bookerFirstName: string;
-  bookerLastName: string;
-  bookerPhone: string;
-  bookerEmail: string;
-  bookerOccasion: string;
-  bookerRequest: string;
-}) {
+} & ReservationRequest) {
   const apiEndpoint = `http://localhost:3000/api/restaurant/${slug}/reserve?day=${day}&time=${time}&partySize=${partySize}`;
   return axiosInstance.post(apiEndpoint, {
     bookerFirstName,
