@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { format } from "date-fns";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import ReservationStepper from "@/app/components/ReservationStepper";
 import RestaurantCard from "@/app/components/RestaurantCard";
@@ -43,6 +44,7 @@ export default function ReservationContainer({
       bookerRequest: "",
     },
   });
+  const [didBook, setDidBook] = useState(false);
   const [day, time] = date.split("T");
 
   const onSubmit = async (data: ReservationRequest) => {
@@ -55,18 +57,25 @@ export default function ReservationContainer({
       bookerRequest,
     } = data;
 
-    reservation.mutate({
-      slug,
-      partySize,
-      time,
-      day,
-      bookerFirstName,
-      bookerLastName,
-      bookerEmail,
-      bookerPhone,
-      bookerOccasion,
-      bookerRequest,
-    });
+    reservation.mutate(
+      {
+        slug,
+        partySize,
+        time,
+        day,
+        bookerFirstName,
+        bookerLastName,
+        bookerEmail,
+        bookerPhone,
+        bookerOccasion,
+        bookerRequest,
+      },
+      {
+        onSuccess: () => {
+          setDidBook(true);
+        },
+      },
+    );
   };
 
   return (
@@ -86,7 +95,60 @@ export default function ReservationContainer({
             <ReservationStepper activeStep={2} steps={steps} />
           </Box>
         </Grid>
+
+        {didBook && (
+          <Grid size={12} mx="64px">
+            <Box
+              sx={{
+                backgroundColor: "#434343",
+                textAlign: "center",
+                boxShadow: "0px 0px 20px 0px #000000 inset",
+                borderRadius: "4px",
+                padding: "14px",
+              }}
+            >
+              <Box sx={{ border: "0.5px solid #34C759" }}>
+                <Typography
+                  color="white"
+                  fontSize="24px"
+                  lineHeight="32.02px"
+                  p="16px 0 2px"
+                >
+                  CONGRATULATIONS ON SUCCESSFULLY BOOKING A RESERVATION!
+                </Typography>
+                <Typography
+                  color="white"
+                  fontSize="14px"
+                  lineHeight="20px"
+                  pb="2px"
+                >
+                  • The provided First Name and Last Name will serve as the
+                  reservation name for your guests to check-in.
+                </Typography>
+                <Typography
+                  color="white"
+                  fontSize="14px"
+                  lineHeight="20px"
+                  pb="2px"
+                >
+                  • If you have any other questions or specific requests that
+                  you forgot to list down, please reach out to the restaurant to
+                  make preparations.
+                </Typography>
+                <Typography
+                  color="white"
+                  fontSize="14px"
+                  lineHeight="20px"
+                  pb="26px"
+                >
+                  • Enjoy your meal!
+                </Typography>
+              </Box>
+            </Box>
+          </Grid>
+        )}
       </Grid>
+
       <TitleSection title="Booking Information" />
       <Grid container px="64px" pb="47px" columnSpacing="30px">
         <Grid size={6}>
