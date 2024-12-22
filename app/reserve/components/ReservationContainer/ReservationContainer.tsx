@@ -3,12 +3,14 @@ import { Box, Paper, Typography, useTheme } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { format } from "date-fns";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import ReservationStepper from "@/app/components/ReservationStepper";
 import RestaurantCard from "@/app/components/RestaurantCard";
 import TitleSection from "@/app/components/TitleSection";
 import { steps } from "@/app/data";
 import { RestaurantCardData } from "@/app/page";
 import { convertToDisplayTime, Time } from "@/app/utils/convertToDisplayTime";
+import { ReservationRequest, useReservation } from "@/lib/reservation";
 import BookingForm from "../BookingForm";
 import BookingPreview from "../BookingPreview";
 import BookingSelection from "../BookingSelection";
@@ -27,6 +29,49 @@ export default function ReservationContainer({
   const theme = useTheme();
   const [didBook, setDidBook] = useState(false);
   const [day, time] = date.split("T");
+
+  const reservation = useReservation();
+  const { handleSubmit, control } = useForm<ReservationRequest>({
+    defaultValues: {
+      bookerFirstName: "",
+      bookerLastName: "",
+      bookerPhone: "",
+      bookerEmail: "",
+      bookerOccasion: "",
+      bookerRequest: "",
+    },
+  });
+
+  const onSubmit = async (data: ReservationRequest) => {
+    const {
+      bookerEmail,
+      bookerFirstName,
+      bookerLastName,
+      bookerPhone,
+      bookerOccasion,
+      bookerRequest,
+    } = data;
+
+    reservation.mutate(
+      {
+        slug,
+        partySize,
+        time,
+        day,
+        bookerFirstName,
+        bookerLastName,
+        bookerEmail,
+        bookerPhone,
+        bookerOccasion,
+        bookerRequest,
+      },
+      {
+        onSuccess: () => {
+          setDidBook(true);
+        },
+      },
+    );
+  };
 
   return (
     <Paper>
@@ -142,14 +187,8 @@ export default function ReservationContainer({
         </Grid>
       </Grid>
 
-      {didBook ? (
-        <BookingForm
-          slug={slug}
-          partySize={partySize}
-          time={time}
-          day={day}
-          setDidBook={setDidBook}
-        />
+      {!didBook ? (
+        <BookingForm onSubmit={handleSubmit(onSubmit)} control={control} />
       ) : (
         <Box px="64px">
           <BookingPreview name="ember" />

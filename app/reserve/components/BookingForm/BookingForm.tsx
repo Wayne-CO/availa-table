@@ -5,74 +5,25 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { FormEvent } from "react";
+import { Control, Controller } from "react-hook-form";
 import TitleSection from "@/app/components/TitleSection";
-import { ReservationRequest, useReservation } from "@/lib/reservation";
+import { ReservationRequest } from "@/lib/reservation";
 
 type Props = {
-  slug: string;
-  partySize: string;
-  time: string;
-  day: string;
-  setDidBook: Dispatch<SetStateAction<boolean>>;
+  onSubmit: (data: FormEvent<HTMLFormElement>) => Promise<void>;
+  control: Control<ReservationRequest>;
 };
 
-export default function BookingForm({
-  slug,
-  partySize,
-  time,
-  day,
-  setDidBook,
-}: Props) {
-  const reservation = useReservation();
-
-  const { handleSubmit, control } = useForm({
-    defaultValues: {
-      bookerFirstName: "",
-      bookerLastName: "",
-      bookerPhone: "",
-      bookerEmail: "",
-      bookerOccasion: "",
-      bookerRequest: "",
-    },
-  });
-
-  const onSubmit = async (data: ReservationRequest) => {
-    const {
-      bookerEmail,
-      bookerFirstName,
-      bookerLastName,
-      bookerPhone,
-      bookerOccasion,
-      bookerRequest,
-    } = data;
-
-    reservation.mutate(
-      {
-        slug,
-        partySize,
-        time,
-        day,
-        bookerFirstName,
-        bookerLastName,
-        bookerEmail,
-        bookerPhone,
-        bookerOccasion,
-        bookerRequest,
-      },
-      {
-        onSuccess: () => {
-          setDidBook(true);
-        },
-      },
-    );
+export default function BookingForm({ onSubmit, control }: Props) {
+  const handleFormSubmit = async (data: FormEvent<HTMLFormElement>) => {
+    await onSubmit(data);
   };
 
   return (
     <>
       <TitleSection title="Confirmation Details" />
-      <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+      <Box component="form" onSubmit={handleFormSubmit}>
         <Grid container columnSpacing="16px" rowSpacing="24px" p="30px 64px">
           <Grid size={6}>
             <Controller
