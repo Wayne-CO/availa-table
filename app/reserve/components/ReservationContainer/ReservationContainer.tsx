@@ -10,6 +10,7 @@ import { steps } from "@/app/data";
 import { RestaurantCardData } from "@/app/page";
 import { convertToDisplayTime, Time } from "@/app/utils/convertToDisplayTime";
 import BookingForm from "../BookingForm";
+import BookingPreview from "../BookingPreview";
 import BookingSelection from "../BookingSelection";
 
 export default function ReservationContainer({
@@ -141,13 +142,19 @@ export default function ReservationContainer({
         </Grid>
       </Grid>
 
-      <BookingForm
-        slug={slug}
-        partySize={partySize}
-        time={time}
-        day={day}
-        setDidBook={setDidBook}
-      />
+      {didBook ? (
+        <BookingForm
+          slug={slug}
+          partySize={partySize}
+          time={time}
+          day={day}
+          setDidBook={setDidBook}
+        />
+      ) : (
+        <Box px="64px">
+          <BookingPreview name="ember" />
+        </Box>
+      )}
     </Paper>
   );
 }
