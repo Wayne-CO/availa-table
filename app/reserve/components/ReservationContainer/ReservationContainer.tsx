@@ -31,7 +31,7 @@ export default function ReservationContainer({
   const [day, time] = date.split("T");
 
   const reservation = useReservation();
-  const { handleSubmit, control } = useForm<ReservationRequest>({
+  const { handleSubmit, control, watch } = useForm<ReservationRequest>({
     defaultValues: {
       bookerFirstName: "",
       bookerLastName: "",
@@ -191,7 +191,7 @@ export default function ReservationContainer({
         <BookingForm onSubmit={handleSubmit(onSubmit)} control={control} />
       ) : (
         <Box px="64px">
-          <BookingPreview name="ember" />
+          <BookingPreview watch={watch} />
         </Box>
       )}
     </Paper>
