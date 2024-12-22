@@ -1,24 +1,15 @@
 "use client";
-import {
-  Box,
-  Button,
-  Paper,
-  TextField,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Paper, Typography, useTheme } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { format } from "date-fns";
 import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
 import ReservationStepper from "@/app/components/ReservationStepper";
 import RestaurantCard from "@/app/components/RestaurantCard";
 import TitleSection from "@/app/components/TitleSection";
 import { steps } from "@/app/data";
 import { RestaurantCardData } from "@/app/page";
 import { convertToDisplayTime, Time } from "@/app/utils/convertToDisplayTime";
-import { ReservationRequest } from "@/lib/reservation";
-import { useReservation } from "@/lib/reservation/hooks/useReservation";
+import BookingForm from "../BookingForm";
 import BookingSelection from "../BookingSelection";
 
 export default function ReservationContainer({
@@ -33,50 +24,8 @@ export default function ReservationContainer({
   partySize: string;
 }) {
   const theme = useTheme();
-  const reservation = useReservation();
-  const { handleSubmit, control } = useForm({
-    defaultValues: {
-      bookerFirstName: "",
-      bookerLastName: "",
-      bookerPhone: "",
-      bookerEmail: "",
-      bookerOccasion: "",
-      bookerRequest: "",
-    },
-  });
   const [didBook, setDidBook] = useState(false);
   const [day, time] = date.split("T");
-
-  const onSubmit = async (data: ReservationRequest) => {
-    const {
-      bookerEmail,
-      bookerFirstName,
-      bookerLastName,
-      bookerPhone,
-      bookerOccasion,
-      bookerRequest,
-    } = data;
-
-    reservation.mutate(
-      {
-        slug,
-        partySize,
-        time,
-        day,
-        bookerFirstName,
-        bookerLastName,
-        bookerEmail,
-        bookerPhone,
-        bookerOccasion,
-        bookerRequest,
-      },
-      {
-        onSuccess: () => {
-          setDidBook(true);
-        },
-      },
-    );
-  };
 
   return (
     <Paper>
@@ -192,102 +141,13 @@ export default function ReservationContainer({
         </Grid>
       </Grid>
 
-      <TitleSection title="Confirmation Details" />
-      <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-        <Grid container columnSpacing="16px" rowSpacing="24px" p="30px 64px">
-          <Grid size={6}>
-            <Controller
-              name="bookerFirstName"
-              control={control}
-              render={({ field }) => (
-                <TextField required label="First Name" {...field} fullWidth />
-              )}
-            />
-          </Grid>
-          <Grid size={6}>
-            <Controller
-              name="bookerLastName"
-              control={control}
-              render={({ field }) => (
-                <TextField required label="Last Name" {...field} fullWidth />
-              )}
-            />
-          </Grid>
-          <Grid size={6}>
-            <Controller
-              name="bookerPhone"
-              control={control}
-              render={({ field }) => (
-                <TextField required label="Phone Number" {...field} fullWidth />
-              )}
-            />
-          </Grid>
-          <Grid size={6}>
-            <Controller
-              name="bookerEmail"
-              control={control}
-              render={({ field }) => (
-                <TextField required label="Email" {...field} fullWidth />
-              )}
-            />
-          </Grid>
-          <Grid size={12}>
-            <Controller
-              name="bookerOccasion"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  required
-                  label="Occasion"
-                  {...field}
-                  helperText="Birthday, Anniversary, Proposal, Date Night, Business Meal, Celebration..."
-                  fullWidth
-                />
-              )}
-            />
-          </Grid>
-          <Grid size={12}>
-            <Controller
-              name="bookerRequest"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  required
-                  label="Special Requests"
-                  {...field}
-                  helperText="Allergies, Accessibility, High Chair, Dietary Restrictions, Pets, Seating Area..."
-                  fullWidth
-                />
-              )}
-            />
-          </Grid>
-        </Grid>
-
-        <Grid container rowSpacing="30px" pb="50px">
-          <Grid size={12}>
-            <Typography
-              color="text.secondary"
-              fontSize="12px"
-              lineHeight="12px"
-              letterSpacing="0.15px"
-              textAlign="center"
-            >
-              Please verify that all information is accurate before booking. The
-              provided First Name and Last Name will serve as the reservation
-              name for your guests to check-in. <br />
-              By clicking “Confirm Reservation” you agree to AvailaTable’s Terms
-              of Use and Privacy Policy. You may opt out of receiving text
-              messages and emails at any time. Standard text message rates may
-              apply.
-            </Typography>
-          </Grid>
-          <Grid size={12} textAlign="center">
-            <Button variant="contained" type="submit">
-              CONFIRM RESERVATION
-            </Button>
-          </Grid>
-        </Grid>
-      </Box>
+      <BookingForm
+        slug={slug}
+        partySize={partySize}
+        time={time}
+        day={day}
+        setDidBook={setDidBook}
+      />
     </Paper>
   );
 }
