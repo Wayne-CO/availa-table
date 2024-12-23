@@ -19,7 +19,7 @@ async function reservation({
   time: string;
   partySize: string;
 } & ReservationRequest) {
-  const apiEndpoint = `http://localhost:3000/api/restaurant/${slug}/reserve?day=${day}&time=${time}&partySize=${partySize}`;
+  const apiEndpoint = `api/restaurant/${slug}/reserve?day=${day}&time=${time}&partySize=${partySize}`;
   return axiosInstance.post(apiEndpoint, {
     bookerFirstName,
     bookerLastName,

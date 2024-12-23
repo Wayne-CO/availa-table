@@ -14,7 +14,7 @@ async function fetchAvailability({
 >): Promise<Availability> {
   const config = {
     method: "GET",
-    url: `http://localhost:3000/api/restaurant/${slug}/availability?day=${day}&time=${time}&partySize=${partySize}`,
+    url: `api/restaurant/${slug}/availability?day=${day}&time=${time}&partySize=${partySize}`,
   };
 
   const { data } = await axiosInstance(config);
