@@ -86,28 +86,28 @@ export default function ReservationContainer({
           >
             Make a Reservation
           </Typography>
-          <Box width={theme.typography.pxToRem(800)} m="0 auto">
+          <Box width={theme.typography.pxToRem(800)} m="0 auto" pb="30px">
             <ReservationStepper activeStep={2} steps={steps} />
           </Box>
         </Grid>
 
         {didBook && (
-          <Grid size={12} mx="64px">
+          <Grid size={12} mx="64px" pb="30px">
             <Box
               sx={{
                 backgroundColor: "#434343",
-                textAlign: "center",
                 boxShadow: "0px 0px 20px 0px #000000 inset",
                 borderRadius: "4px",
                 padding: "14px",
               }}
             >
-              <Box sx={{ border: "0.5px solid #34C759" }}>
+              <Box sx={{ border: "0.5px solid #34C759", p: "25px" }}>
                 <Typography
                   color="white"
                   fontSize="24px"
                   lineHeight="32.02px"
-                  p="16px 0 2px"
+                  p="0 0 2px"
+                  textAlign="center"
                 >
                   CONGRATULATIONS ON SUCCESSFULLY BOOKING A RESERVATION!
                 </Typography>
@@ -130,12 +130,7 @@ export default function ReservationContainer({
                   you forgot to list down, please reach out to the restaurant to
                   make preparations.
                 </Typography>
-                <Typography
-                  color="white"
-                  fontSize="14px"
-                  lineHeight="20px"
-                  pb="26px"
-                >
+                <Typography color="white" fontSize="14px" lineHeight="20px">
                   • Enjoy your meal!
                 </Typography>
               </Box>
@@ -145,7 +140,7 @@ export default function ReservationContainer({
       </Grid>
 
       <TitleSection title="Booking Information" />
-      <Grid container px="64px" pb="47px" columnSpacing="30px">
+      <Grid container p="16px 64px 47px" columnSpacing="30px">
         <Grid size={6}>
           <RestaurantCard
             restaurant={restaurant}
