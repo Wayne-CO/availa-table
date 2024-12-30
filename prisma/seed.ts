@@ -1,7 +1,9 @@
 import { PRICE, PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 async function main() {
-  //   await prisma.table.deleteMany();
+  await prisma.bookingsOnTables.deleteMany();
+  await prisma.booking.deleteMany();
+  await prisma.table.deleteMany();
   await prisma.review.deleteMany();
   await prisma.item.deleteMany();
   await prisma.restaurant.deleteMany();
