@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { PRICE } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import RestaurantCard from "./components/RestaurantCard/RestaurantCard";
 import SearchSideBar from "./SearchSideBar";
@@ -54,7 +55,13 @@ export default async function Search({ searchParams }: Props) {
     <>
       <Header />
 
-      <Box component="main" width="1272px" margin="auto" px="20px" pt="44px">
+      <Box
+        component="main"
+        width="1272px"
+        margin="0 auto -50px"
+        px="20px"
+        pt="44px"
+      >
         <Box display="flex">
           <Box pr={2}>
             <SearchSideBar
@@ -78,6 +85,8 @@ export default async function Search({ searchParams }: Props) {
           )}
         </Box>
       </Box>
+
+      <Footer />
     </>
   );
 }
