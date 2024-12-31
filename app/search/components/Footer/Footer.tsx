@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import Image from "next/image";
-import footerSearch from "@/public/footer-search.png";
+import footer from "@/public/footer.png";
 
 export default function Footer() {
   return (
@@ -14,7 +14,7 @@ export default function Footer() {
       >
         <Image
           alt="Spoon and Fork | Crafted Origin"
-          src={footerSearch}
+          src={footer}
           quality={100}
           fill
           sizes="100vw"
