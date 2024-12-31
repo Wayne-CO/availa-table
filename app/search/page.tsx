@@ -1,10 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import { PRICE } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import Footer from "./components/Footer";
 import Header from "./components/Header";
 import RestaurantCard from "./components/RestaurantCard/RestaurantCard";
 import SearchSideBar from "./SearchSideBar";
+import Footer from "../components/Footer";
 
 type SearchParams = {
   city?: string;

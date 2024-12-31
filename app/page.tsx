@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { Prisma } from "@prisma/client";
 import { prisma } from "lib/prisma";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import RestaurantCard from "./components/RestaurantCard";
 
@@ -41,7 +42,13 @@ export default async function Home() {
     <Box>
       <Header />
 
-      <Box component="main" width="1272px" margin="auto" px="20px" pt="270px">
+      <Box
+        component="main"
+        width="1272px"
+        margin="0 auto -50px"
+        px="20px"
+        pt="270px"
+      >
         <Grid container spacing={2}>
           {restaurants.map((restaurant) => (
             <Grid key={restaurant.id}>
@@ -59,6 +66,8 @@ export default async function Home() {
           ))}
         </Grid>
       </Box>
+
+      <Footer />
     </Box>
   );
 }
