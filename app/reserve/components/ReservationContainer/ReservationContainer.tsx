@@ -183,7 +183,11 @@ export default function ReservationContainer({
       </Grid>
 
       {!didBook ? (
-        <BookingForm onSubmit={handleSubmit(onSubmit)} control={control} />
+        <BookingForm
+          onSubmit={handleSubmit(onSubmit)}
+          control={control}
+          pending={reservation.isPending}
+        />
       ) : (
         <Box px="64px">
           <BookingPreview watch={watch} />

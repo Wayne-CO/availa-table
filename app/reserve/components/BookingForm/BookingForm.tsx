@@ -1,10 +1,5 @@
-import {
-  Box,
-  Button,
-  Grid2 as Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { Box, Grid2 as Grid, TextField, Typography } from "@mui/material";
 import { FormEvent } from "react";
 import { Control, Controller } from "react-hook-form";
 import TitleSection from "@/app/components/TitleSection";
@@ -13,9 +8,10 @@ import { ReservationRequest } from "@/lib/reservation";
 type Props = {
   onSubmit: (data: FormEvent<HTMLFormElement>) => Promise<void>;
   control: Control<ReservationRequest>;
+  pending: boolean;
 };
 
-export default function BookingForm({ onSubmit, control }: Props) {
+export default function BookingForm({ onSubmit, control, pending }: Props) {
   const handleFormSubmit = async (data: FormEvent<HTMLFormElement>) => {
     await onSubmit(data);
   };
@@ -112,9 +108,9 @@ export default function BookingForm({ onSubmit, control }: Props) {
             </Typography>
           </Grid>
           <Grid size={12} textAlign="center">
-            <Button variant="contained" type="submit">
+            <LoadingButton type="submit" variant="contained" loading={pending}>
               CONFIRM RESERVATION
-            </Button>
+            </LoadingButton>
           </Grid>
         </Grid>
       </Box>
