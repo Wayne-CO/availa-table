@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { Prisma } from "@prisma/client";
 import Footer from "@/app/components/Footer";
-import Header from "@/app/components/Header";
+import RestaurantHeader from "@/app/components/RestaurantHeader";
 import { prisma } from "@/lib/prisma";
 import RestaurantContainer from "./components/RestaurantContainer";
 
@@ -41,11 +41,11 @@ export default async function RestaurantDetails({ params }: Props) {
 
   return (
     <>
-      <Header />
+      <RestaurantHeader restaurantName={restaurant.name} />
 
       <Box
         component="main"
-        sx={{ width: "1272px", margin: "auto", px: "20px" }}
+        sx={{ width: "1272px", margin: "0 auto -50px", px: "20px" }}
       >
         <RestaurantContainer restaurant={restaurant} />
       </Box>
