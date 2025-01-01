@@ -1,4 +1,7 @@
+import { Box } from "@mui/material";
 import { Prisma } from "@prisma/client";
+import Footer from "@/app/components/Footer";
+import Header from "@/app/components/Header";
 import { prisma } from "@/lib/prisma";
 import RestaurantContainer from "./components/RestaurantContainer";
 
@@ -36,5 +39,18 @@ type Props = {
 export default async function RestaurantDetails({ params }: Props) {
   const restaurant = await fetchRestaurantBySlug(params.slug);
 
-  return <RestaurantContainer restaurant={restaurant} />;
+  return (
+    <>
+      <Header />
+
+      <Box
+        component="main"
+        sx={{ width: "1272px", margin: "auto", px: "20px" }}
+      >
+        <RestaurantContainer restaurant={restaurant} />
+      </Box>
+
+      <Footer />
+    </>
+  );
 }
