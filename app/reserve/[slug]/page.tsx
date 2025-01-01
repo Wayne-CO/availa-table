@@ -1,4 +1,6 @@
 import { Box } from "@mui/material";
+import Footer from "@/app/components/Footer";
+import RestaurantHeader from "@/app/components/RestaurantHeader";
 import { prisma } from "@/lib/prisma";
 import ReservationContainer from "../components/ReservationContainer";
 
@@ -40,13 +42,22 @@ export default async function Reserve({
   const { date, partySize } = searchParams;
 
   return (
-    <Box component="main" sx={{ width: "1272px", margin: "auto", px: "20px" }}>
-      <ReservationContainer
-        slug={params.slug}
-        restaurant={restaurant}
-        date={date}
-        partySize={partySize}
-      />
-    </Box>
+    <>
+      <RestaurantHeader restaurantName={restaurant.name} />
+
+      <Box
+        component="main"
+        sx={{ width: "1272px", margin: "0 auto -50px", px: "20px" }}
+      >
+        <ReservationContainer
+          slug={params.slug}
+          restaurant={restaurant}
+          date={date}
+          partySize={partySize}
+        />
+      </Box>
+
+      <Footer />
+    </>
   );
 }
