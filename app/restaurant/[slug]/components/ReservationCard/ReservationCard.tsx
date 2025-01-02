@@ -159,7 +159,21 @@ export default function ReservationCard({
           </LocalizationProvider>
         </Grid>
       </Grid>
-      <Grid container p="30px 40px" rowSpacing="24px" columnSpacing="16px">
+
+      <TitleSection title="Available Time" />
+
+      <Typography
+        fontSize="12px"
+        letterSpacing="0.15px"
+        lineHeight="12px"
+        textAlign="center"
+        p="16px 40px"
+      >
+        Upon selecting a time, you will be automatically directed to the next
+        page to confirm your reservation.
+      </Typography>
+
+      <Grid container p="16px 40px 46px" rowSpacing="24px" columnSpacing="16px">
         {availabilityQuery.data &&
           availabilityQuery.data.map(({ time, available }) => {
             const buttonSharedProps: ButtonProps = {
