@@ -1,5 +1,12 @@
 import LoadingButton from "@mui/lab/LoadingButton";
-import { Box, Grid2 as Grid, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid2 as Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useParams } from "next/navigation";
 import { FormEvent } from "react";
 import { Control, Controller } from "react-hook-form";
 import TitleSection from "@/app/components/TitleSection";
@@ -12,6 +19,7 @@ type Props = {
 };
 
 export default function BookingForm({ onSubmit, control, pending }: Props) {
+  const params = useParams<{ slug: string }>();
   const handleFormSubmit = async (data: FormEvent<HTMLFormElement>) => {
     await onSubmit(data);
   };
@@ -108,6 +116,9 @@ export default function BookingForm({ onSubmit, control, pending }: Props) {
             </Typography>
           </Grid>
           <Grid size={12} textAlign="center">
+            <Button href={`/restaurant/${params.slug}`} sx={{ mr: "77px" }}>
+              BACK TO BOOKING
+            </Button>
             <LoadingButton type="submit" variant="contained" loading={pending}>
               CONFIRM RESERVATION
             </LoadingButton>
