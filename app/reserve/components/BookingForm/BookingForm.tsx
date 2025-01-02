@@ -24,6 +24,11 @@ export default function BookingForm({ onSubmit, control, pending }: Props) {
     await onSubmit(data);
   };
 
+  const sharedButtonProps = {
+    letterSpacing: "0.46px",
+    lineHeight: "26px",
+    fontSize: "15px",
+  };
   return (
     <>
       <TitleSection title="Confirmation Details" />
@@ -116,10 +121,21 @@ export default function BookingForm({ onSubmit, control, pending }: Props) {
             </Typography>
           </Grid>
           <Grid size={12} textAlign="center">
-            <Button href={`/restaurant/${params.slug}`} sx={{ mr: "77px" }}>
+            <Button
+              href={`/restaurant/${params.slug}`}
+              sx={{ mr: "77px", ...sharedButtonProps }}
+            >
               BACK TO BOOKING
             </Button>
-            <LoadingButton type="submit" variant="contained" loading={pending}>
+            <LoadingButton
+              type="submit"
+              variant="contained"
+              loading={pending}
+              sx={{
+                p: "8px 47.5px",
+                ...sharedButtonProps,
+              }}
+            >
               CONFIRM RESERVATION
             </LoadingButton>
           </Grid>
