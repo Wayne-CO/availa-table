@@ -77,7 +77,7 @@ export default function BookingForm({ onSubmit, control, pending }: Props) {
               render={({ field }) => (
                 <TextField
                   required
-                  label="Occasion"
+                  label="Purpose of Reservation"
                   {...field}
                   helperText="Birthday, Anniversary, Proposal, Date Night, Business Meal, Celebration..."
                   fullWidth

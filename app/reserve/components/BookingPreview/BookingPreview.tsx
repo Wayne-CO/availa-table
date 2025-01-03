@@ -34,7 +34,10 @@ export default function BookingPreview({ watch }: Props) {
         </Grid>
 
         <Grid size={12}>
-          <BookingSelection label="OCCASION" value={bookerOccasion ?? ""} />
+          <BookingSelection
+            label="PURPOSE OF RESERVATION"
+            value={bookerOccasion ?? ""}
+          />
         </Grid>
 
         <Grid size={12}>
