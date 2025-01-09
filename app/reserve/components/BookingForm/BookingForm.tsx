@@ -76,7 +76,6 @@ export default function BookingForm({ onSubmit, control, pending }: Props) {
               control={control}
               render={({ field }) => (
                 <TextField
-                  required
                   label="Purpose of Reservation"
                   {...field}
                   helperText="Birthday, Anniversary, Proposal, Date Night, Business Meal, Celebration..."
@@ -91,8 +90,7 @@ export default function BookingForm({ onSubmit, control, pending }: Props) {
               control={control}
               render={({ field }) => (
                 <TextField
-                  required
-                  label="Special Requests"
+                  label="Special Request"
                   {...field}
                   helperText="Allergies, Accessibility, High Chair, Dietary Restrictions, Pets, Seating Area..."
                   fullWidth
