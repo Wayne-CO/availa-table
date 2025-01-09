@@ -18,7 +18,7 @@ const palette = {
   red: {
     main: "#D9302F",
   },
-  grey: {
+  gray: {
     main: "#0000001F",
   },
 };

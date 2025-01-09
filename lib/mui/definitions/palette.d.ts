@@ -2,17 +2,17 @@ import "@mui/material";
 
 declare module "@mui/material/styles" {
   interface Palette {
-    green: PaletteOptions["primary"];
-    neutral: PaletteOptions["primary"];
-    red: PaletteOptions["primary"];
-    grey: PaletteOptions["primary"];
+    green: PaletteOptions["main"];
+    red: PaletteOptions["main"];
+    gray: PaletteOptions["main"];
+    neutral: PaletteOptions["main"];
   }
 
   interface PaletteOptions {
-    green: PaletteOptions["primary"];
-    red: PaletteOptions["primary"];
-    neutral?: PaletteOptions["primary"];
-    grey?: PaletteOptions["primary"];
+    green: PaletteOptions["main"];
+    red: PaletteOptions["main"];
+    gray: PaletteOptions["main"];
+    neutral?: PaletteOptions["main"];
   }
 }
 
@@ -26,6 +26,6 @@ declare module "@mui/material/SvgIcon" {
 declare module "@mui/material/Button" {
   interface ButtonPropsColorOverrides {
     red: true;
-    grey: true;
+    gray: true;
   }
 }

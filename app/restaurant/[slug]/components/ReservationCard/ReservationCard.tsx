@@ -209,7 +209,7 @@ export default function ReservationCard({
                   <Button
                     {...buttonSharedProps}
                     sx={{ ...buttonSharedSx, color: "#00000061" }}
-                    color="grey"
+                    color="gray"
                     disabled
                   >
                     {localTime}
