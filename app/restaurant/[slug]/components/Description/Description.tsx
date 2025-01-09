@@ -1,12 +1,12 @@
 import { Box, Typography } from "@mui/material";
-import { Cuisine, Location, Review } from "@prisma/client";
+import { Review } from "@prisma/client";
 import Rating from "@/app/components/Rating";
 
 type Props = {
   description: string;
   reviews: Review[];
-  location: Location;
-  cuisine: Cuisine;
+  location: string;
+  cuisine: string;
 };
 
 export default function Description({
