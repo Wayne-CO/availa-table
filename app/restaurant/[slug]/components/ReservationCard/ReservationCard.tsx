@@ -106,12 +106,12 @@ export default function ReservationCard({
       <Grid container p="16px 40px" rowSpacing="24px" columnSpacing="16px">
         <Grid size={6}>
           <FormControl fullWidth>
-            <InputLabel id="booking-party-size">Party Size</InputLabel>
+            <InputLabel id="booking-party-size">Guest Count</InputLabel>
             <Select
               labelId="booking-party-size-label"
               id="select-party-size"
               value={partySize}
-              label="Party Size"
+              label="Guest Count"
               onChange={(e) => setPartySize(e.target.value)}
             >
               {partySizes.map(({ value, label }) => {
