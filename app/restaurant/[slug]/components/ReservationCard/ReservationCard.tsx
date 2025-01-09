@@ -199,8 +199,8 @@ export default function ReservationCard({
                 {available ? (
                   <Button
                     {...buttonSharedProps}
-                    sx={buttonSharedSx}
-                    color="error"
+                    sx={{ ...buttonSharedSx, color: "white" }}
+                    color="red"
                     href={`/reserve/${slug}?date=${day}T${time}&partySize=${partySize}`}
                   >
                     {localTime}
@@ -208,8 +208,8 @@ export default function ReservationCard({
                 ) : (
                   <Button
                     {...buttonSharedProps}
-                    sx={buttonSharedSx}
-                    color="warning"
+                    sx={{ ...buttonSharedSx, color: "#00000061" }}
+                    color="grey"
                     disabled
                   >
                     {localTime}

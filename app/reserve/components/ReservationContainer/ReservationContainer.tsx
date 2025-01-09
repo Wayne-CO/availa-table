@@ -145,6 +145,7 @@ export default function ReservationContainer({
         <Grid size={6}>
           <RestaurantCard
             restaurant={restaurant}
+            isClickable
             sxCard={{ width: "100%" }}
             sxCardMedia={{ height: "127px" }}
             sxCardContent={{

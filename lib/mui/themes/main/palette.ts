@@ -15,6 +15,12 @@ const palette = {
     main: "#9C27B0",
     dark: "#7B1FA2",
   },
+  red: {
+    main: "#D9302F",
+  },
+  grey: {
+    main: "#0000001F",
+  },
 };
 
 export default palette;
