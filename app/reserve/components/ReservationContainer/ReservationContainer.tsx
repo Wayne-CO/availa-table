@@ -68,6 +68,7 @@ export default function ReservationContainer({
       {
         onSuccess: () => {
           setDidBook(true);
+          window.scrollTo(0, 0);
         },
       },
     );
