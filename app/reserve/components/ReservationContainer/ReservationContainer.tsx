@@ -28,6 +28,7 @@ export default function ReservationContainer({
 }) {
   const theme = useTheme();
   const [didBook, setDidBook] = useState(false);
+  const [activeStep, setActiveStep] = useState(2);
   const [day, time] = date.split("T");
 
   const reservation = useReservation();
@@ -68,6 +69,7 @@ export default function ReservationContainer({
       {
         onSuccess: () => {
           setDidBook(true);
+          setActiveStep(3);
           window.scrollTo(0, 0);
         },
       },
@@ -88,7 +90,7 @@ export default function ReservationContainer({
             Make a Reservation
           </Typography>
           <Box width={theme.typography.pxToRem(800)} m="0 auto" pb="30px">
-            <ReservationStepper activeStep={2} steps={steps} />
+            <ReservationStepper activeStep={activeStep} steps={steps} />
           </Box>
         </Grid>
 
