@@ -23,7 +23,9 @@ export default function Rating({ reviews, location, cuisine }: Props) {
       <Box>
         <Typography color="text.primary" pr="3px" variant="subtitle2">
           {reviews.length} Review{reviews.length === 1 ? "" : "s"} •{" "}
-          {location.name} • {cuisine.name}
+          <Box component="span" sx={{ textTransform: "capitalize" }}>
+            {location.name} • {cuisine.name}
+          </Box>
         </Typography>
       </Box>
     </Box>
