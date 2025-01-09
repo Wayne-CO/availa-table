@@ -1,12 +1,12 @@
 import { Box, Typography } from "@mui/material";
-import { Cuisine, Location, Review } from "@prisma/client";
+import { Review } from "@prisma/client";
 import { calculateReviewRatingAverage } from "@/app/utils/calculate";
 import Stars from "../Stars";
 
 type Props = {
   reviews: Review[];
-  location: Location;
-  cuisine: Cuisine;
+  location: { name: string };
+  cuisine: { name: string };
 };
 
 export default function Rating({ reviews, location, cuisine }: Props) {

@@ -5,8 +5,8 @@ import Rating from "@/app/components/Rating";
 type Props = {
   description: string;
   reviews: Review[];
-  location: string;
-  cuisine: string;
+  location: { name: string };
+  cuisine: { name: string };
 };
 
 export default function Description({
