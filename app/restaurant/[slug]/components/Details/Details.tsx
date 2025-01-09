@@ -21,6 +21,8 @@ export default function Details({ restaurant }: Props) {
           <Description
             description={restaurant.description}
             reviews={restaurant.reviews}
+            location={restaurant.location}
+            cuisine={restaurant.cuisine}
           />
         </Grid>
       </Grid>

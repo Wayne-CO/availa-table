@@ -24,6 +24,16 @@ const fetchRestaurantBySlug = async (slug: string) => {
       reviews: true,
       openTime: true,
       closeTime: true,
+      cuisine: {
+        select: {
+          name: true,
+        },
+      },
+      location: {
+        select: {
+          name: true,
+        },
+      },
     },
   });
 
