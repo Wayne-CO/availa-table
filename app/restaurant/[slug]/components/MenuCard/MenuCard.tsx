@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 type Props = {
   name: string;
@@ -8,7 +8,7 @@ type Props = {
 
 export default function MenuCard({ name, price, description }: Props) {
   return (
-    <Paper variant="outlined" square={true} sx={{ padding: "10px" }}>
+    <Box sx={{ padding: "10px", border: "0.5px solid #00000026" }}>
       <Box sx={{ height: 148 }}>
         <Box display="flex" pb={1} justifyContent="space-between">
           <Typography
@@ -45,6 +45,6 @@ export default function MenuCard({ name, price, description }: Props) {
           {description}
         </Typography>
       </Box>
-    </Paper>
+    </Box>
   );
 }

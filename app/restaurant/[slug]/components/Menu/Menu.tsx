@@ -12,7 +12,7 @@ export default function Menu({ restaurant }: Props) {
   return (
     <Box>
       <TitleSection title="Selections" />
-      <Grid container spacing={2} px="64px">
+      <Grid container spacing={2} pt="16px" px="64px">
         {restaurant.items.map(({ id, name, description, price }) => {
           return (
             <Grid size={6} key={id}>
