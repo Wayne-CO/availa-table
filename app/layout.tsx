@@ -1,7 +1,9 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import { QueryClientProvider } from "@tanstack/react-query";
 import type { Metadata } from "next";
 import theme from "@/lib/mui/themes/main";
+import { queryClient } from "@/lib/reactQuery/queryClient";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,12 +18,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body style={{ backgroundColor: "#F6F6F6" }}>
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            {children}
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+        <QueryClientProvider client={queryClient}>
+          <AppRouterCacheProvider>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              {children}
+            </ThemeProvider>
+          </AppRouterCacheProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );

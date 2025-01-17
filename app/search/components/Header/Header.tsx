@@ -27,7 +27,7 @@ export default function Header() {
         />
       </Box>
 
-      <Box component="main" width="1272px" margin="auto" px="20px" pt="40px">
+      <Box component="main" width="1272px" margin="auto" px="20px" pt="30px">
         <NavBar logoSrc={avaliaTableLogo} logoAlt="Availatable" />
 
         <Typography

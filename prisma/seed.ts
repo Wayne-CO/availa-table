@@ -1,7 +1,9 @@
 import { PRICE, PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 async function main() {
-  //   await prisma.table.deleteMany();
+  await prisma.bookingsOnTables.deleteMany();
+  await prisma.booking.deleteMany();
+  await prisma.table.deleteMany();
   await prisma.review.deleteMany();
   await prisma.item.deleteMany();
   await prisma.restaurant.deleteMany();
@@ -1295,22 +1297,22 @@ async function main() {
     ],
   });
 
-  //   await prisma.table.createMany({
-  //     data: [
-  //       {
-  //         restaurantId: vivaanId,
-  //         seats: 4,
-  //       },
-  //       {
-  //         restaurantId: vivaanId,
-  //         seats: 4,
-  //       },
-  //       {
-  //         restaurantId: vivaanId,
-  //         seats: 2,
-  //       },
-  //     ],
-  //   });
+  await prisma.table.createMany({
+    data: [
+      {
+        restaurantId: vivaanId,
+        seats: 4,
+      },
+      {
+        restaurantId: vivaanId,
+        seats: 4,
+      },
+      {
+        restaurantId: vivaanId,
+        seats: 2,
+      },
+    ],
+  });
 
   // res.status(200).json({ name: "hello" });
 }

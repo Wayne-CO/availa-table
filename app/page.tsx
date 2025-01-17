@@ -1,7 +1,8 @@
 import { Box } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import Grid from "@mui/material/Grid2";
 import { Prisma } from "@prisma/client";
 import { prisma } from "lib/prisma";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import RestaurantCard from "./components/RestaurantCard";
 
@@ -41,15 +42,32 @@ export default async function Home() {
     <Box>
       <Header />
 
-      <Box component="main" width="1272px" margin="auto" px="20px" pt="270px">
+      <Box
+        component="main"
+        width="1272px"
+        margin="0 auto -50px"
+        px="20px"
+        pt="270px"
+      >
         <Grid container spacing={2}>
           {restaurants.map((restaurant) => (
             <Grid key={restaurant.id}>
-              <RestaurantCard restaurant={restaurant} />
+              <RestaurantCard
+                restaurant={restaurant}
+                sxCard={{ width: 296 }}
+                sxCardMedia={{ height: "127px" }}
+                sxCardContent={{
+                  minHeight: "130px",
+                  pb: "16px",
+                }}
+                isClickable
+              />
             </Grid>
           ))}
         </Grid>
       </Box>
+
+      <Footer />
     </Box>
   );
 }
