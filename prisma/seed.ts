@@ -509,7 +509,9 @@ async function main() {
     ],
   });
 
-  const restaurants = await prisma.restaurant.findMany();
+  const restaurants = await prisma.restaurant.findMany({
+    select: { id: true, name: true },
+  });
 
   const vivaanId =
     restaurants.find((restaurant) => restaurant.name === "Vivaan - fine Indian")
@@ -1297,24 +1299,27 @@ async function main() {
     ],
   });
 
-  await prisma.table.createMany({
-    data: [
-      {
-        restaurantId: vivaanId,
-        seats: 4,
-      },
-      {
-        restaurantId: vivaanId,
-        seats: 4,
-      },
-      {
-        restaurantId: vivaanId,
-        seats: 2,
-      },
-    ],
-  });
+  for (const restaurant of restaurants) {
+    const seats = [2, 4];
+    const generateSeats = () => seats[Math.floor(Math.random() * seats.length)];
 
-  // res.status(200).json({ name: "hello" });
+    await prisma.table.createMany({
+      data: [
+        {
+          restaurantId: restaurant.id,
+          seats: generateSeats(),
+        },
+        {
+          restaurantId: restaurant.id,
+          seats: generateSeats(),
+        },
+        {
+          restaurantId: restaurant.id,
+          seats: generateSeats(),
+        },
+      ],
+    });
+  }
 }
 main()
   .then(async () => {
