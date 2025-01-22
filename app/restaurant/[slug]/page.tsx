@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { Prisma } from "@prisma/client";
+import { notFound } from "next/navigation";
 import Footer from "@/app/components/Footer";
 import RestaurantHeader from "@/app/components/RestaurantHeader";
 import { prisma } from "@/lib/prisma";
@@ -10,34 +11,37 @@ export type RestaurantDetails = Prisma.PromiseReturnType<
 >;
 
 const fetchRestaurantBySlug = async (slug: string) => {
-  const restaurant = await prisma.restaurant.findUniqueOrThrow({
-    where: {
-      slug,
-    },
-    select: {
-      id: true,
-      name: true,
-      images: true,
-      description: true,
-      slug: true,
-      items: true,
-      reviews: true,
-      openTime: true,
-      closeTime: true,
-      cuisine: {
-        select: {
-          name: true,
+  try {
+    const restaurant = await prisma.restaurant.findUniqueOrThrow({
+      where: {
+        slug,
+      },
+      select: {
+        id: true,
+        name: true,
+        images: true,
+        description: true,
+        slug: true,
+        items: true,
+        reviews: true,
+        openTime: true,
+        closeTime: true,
+        cuisine: {
+          select: {
+            name: true,
+          },
+        },
+        location: {
+          select: {
+            name: true,
+          },
         },
       },
-      location: {
-        select: {
-          name: true,
-        },
-      },
-    },
-  });
-
-  return restaurant;
+    });
+    return restaurant;
+  } catch (e) {
+    notFound();
+  }
 };
 
 type Props = {
