@@ -9,6 +9,7 @@ import {
 import { useParams } from "next/navigation";
 import { FormEvent } from "react";
 import { Control, Controller } from "react-hook-form";
+import { PatternFormat } from "react-number-format";
 import TitleSection from "@/app/components/TitleSection";
 import { ReservationRequest } from "@/lib/reservation";
 
@@ -57,7 +58,14 @@ export default function BookingForm({ onSubmit, control, pending }: Props) {
               name="bookerPhone"
               control={control}
               render={({ field }) => (
-                <TextField required label="Phone Number" {...field} fullWidth />
+                <PatternFormat
+                  customInput={TextField}
+                  format="(###) ###-####"
+                  required
+                  label="Phone Number"
+                  fullWidth
+                  {...field}
+                />
               )}
             />
           </Grid>
