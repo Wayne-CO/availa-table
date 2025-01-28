@@ -22,7 +22,6 @@ export default function NotFound() {
           textAlign="center"
           fontSize="60px"
           fontWeight="200"
-          pb="50px"
         >
           APOLOGIES FOR THE OVERSIGHT
         </Typography>
