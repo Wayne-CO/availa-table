@@ -98,6 +98,12 @@ export default function BookingForm({
                   customInput={TextField}
                   format="(###) ###-####"
                   required
+                  error={!!errors.bookerPhone}
+                  helperText={
+                    errors.bookerPhone && (
+                      <span>{errors.bookerPhone.message}</span>
+                    )
+                  }
                   label="Phone Number"
                   fullWidth
                   {...field}
