@@ -8,7 +8,8 @@ import {
 } from "@mui/material";
 import { useParams } from "next/navigation";
 import { FormEvent } from "react";
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FormState } from "react-hook-form";
+import { PatternFormat } from "react-number-format";
 import TitleSection from "@/app/components/TitleSection";
 import { ReservationRequest } from "@/lib/reservation";
 
@@ -16,10 +17,24 @@ type Props = {
   onSubmit: (data: FormEvent<HTMLFormElement>) => Promise<void>;
   control: Control<ReservationRequest>;
   pending: boolean;
+  formState: FormState<{
+    bookerFirstName: string;
+    bookerLastName: string;
+    bookerPhone: string;
+    bookerEmail: string;
+    bookerOccasion?: string | null | undefined;
+    bookerRequest?: string | null | undefined;
+  }>;
 };
 
-export default function BookingForm({ onSubmit, control, pending }: Props) {
+export default function BookingForm({
+  formState,
+  onSubmit,
+  control,
+  pending,
+}: Props) {
   const params = useParams<{ slug: string }>();
+  const { errors } = formState;
   const handleFormSubmit = async (data: FormEvent<HTMLFormElement>) => {
     await onSubmit(data);
   };
@@ -32,14 +47,25 @@ export default function BookingForm({ onSubmit, control, pending }: Props) {
   return (
     <>
       <TitleSection title="Confirmation Details" />
-      <Box component="form" onSubmit={handleFormSubmit}>
+      <Box component="form" onSubmit={handleFormSubmit} noValidate>
         <Grid container columnSpacing="16px" rowSpacing="24px" p="30px 64px">
           <Grid size={6}>
             <Controller
               name="bookerFirstName"
               control={control}
               render={({ field }) => (
-                <TextField required label="First Name" {...field} fullWidth />
+                <TextField
+                  required
+                  label="First Name"
+                  error={!!errors.bookerFirstName}
+                  helperText={
+                    errors.bookerFirstName && (
+                      <span>{errors.bookerFirstName.message}</span>
+                    )
+                  }
+                  {...field}
+                  fullWidth
+                />
               )}
             />
           </Grid>
@@ -48,7 +74,18 @@ export default function BookingForm({ onSubmit, control, pending }: Props) {
               name="bookerLastName"
               control={control}
               render={({ field }) => (
-                <TextField required label="Last Name" {...field} fullWidth />
+                <TextField
+                  required
+                  label="Last Name"
+                  error={!!errors.bookerLastName}
+                  helperText={
+                    errors.bookerLastName && (
+                      <span>{errors.bookerLastName.message}</span>
+                    )
+                  }
+                  {...field}
+                  fullWidth
+                />
               )}
             />
           </Grid>
@@ -57,7 +94,20 @@ export default function BookingForm({ onSubmit, control, pending }: Props) {
               name="bookerPhone"
               control={control}
               render={({ field }) => (
-                <TextField required label="Phone Number" {...field} fullWidth />
+                <PatternFormat
+                  customInput={TextField}
+                  format="(###) ###-####"
+                  required
+                  error={!!errors.bookerPhone}
+                  helperText={
+                    errors.bookerPhone && (
+                      <span>{errors.bookerPhone.message}</span>
+                    )
+                  }
+                  label="Phone Number"
+                  fullWidth
+                  {...field}
+                />
               )}
             />
           </Grid>
@@ -66,7 +116,18 @@ export default function BookingForm({ onSubmit, control, pending }: Props) {
               name="bookerEmail"
               control={control}
               render={({ field }) => (
-                <TextField required label="Email" {...field} fullWidth />
+                <TextField
+                  required
+                  label="Email"
+                  error={!!errors.bookerEmail}
+                  helperText={
+                    errors.bookerEmail && (
+                      <span>{errors.bookerEmail.message}</span>
+                    )
+                  }
+                  {...field}
+                  fullWidth
+                />
               )}
             />
           </Grid>

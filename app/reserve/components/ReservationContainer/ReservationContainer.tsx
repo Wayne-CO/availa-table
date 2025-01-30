@@ -1,4 +1,5 @@
 "use client";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Paper, Typography, useTheme } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { format } from "date-fns";
@@ -10,7 +11,11 @@ import TitleSection from "@/app/components/TitleSection";
 import { steps } from "@/app/data";
 import { RestaurantCardData } from "@/app/page";
 import { convertToDisplayTime, Time } from "@/app/utils/convertToDisplayTime";
-import { ReservationRequest, useReservation } from "@/lib/reservation";
+import {
+  ReservationRequest,
+  reservationRequestSchema,
+  useReservation,
+} from "@/lib/reservation";
 import BookingForm from "../BookingForm";
 import BookingPreview from "../BookingPreview";
 import BookingSelection from "../BookingSelection";
@@ -32,16 +37,18 @@ export default function ReservationContainer({
   const [day, time] = date.split("T");
 
   const reservation = useReservation();
-  const { handleSubmit, control, watch } = useForm<ReservationRequest>({
-    defaultValues: {
-      bookerFirstName: "",
-      bookerLastName: "",
-      bookerPhone: "",
-      bookerEmail: "",
-      bookerOccasion: "",
-      bookerRequest: "",
-    },
-  });
+  const { handleSubmit, control, watch, formState } =
+    useForm<ReservationRequest>({
+      defaultValues: {
+        bookerFirstName: "",
+        bookerLastName: "",
+        bookerPhone: "",
+        bookerEmail: "",
+        bookerOccasion: "",
+        bookerRequest: "",
+      },
+      resolver: zodResolver(reservationRequestSchema),
+    });
 
   const onSubmit = async (data: ReservationRequest) => {
     const {
@@ -191,6 +198,7 @@ export default function ReservationContainer({
           onSubmit={handleSubmit(onSubmit)}
           control={control}
           pending={reservation.isPending}
+          formState={formState}
         />
       ) : (
         <Box px="64px">
